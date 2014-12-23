@@ -5,6 +5,11 @@ permalink: /contact/
 comments: false
 ---
 
-The documentation included provides all the information needed to get the theme installed and customized. However, if you have any questions you can email support@ecko.me, and we will be happy to help.
+If you would like to get in touch with me then please enter your email address and message below and I'll be happy to have a chat.
 
-If you have any bug reports, or feature requests, please let us know!
+<form method="POST" action="//formspree.io/knoxjeffrey@outlook.com">
+  <input type="email" name="_replyto" placeholder="Your email">
+  <textarea name="message" rows="5" style="margin: 0px 0px 7.1875px; width: 260px; height: 128px;"></textarea>
+  <input type="text" name="_gotcha" style="display:none">
+  <button type="submit">Send Email</button>
+</form>

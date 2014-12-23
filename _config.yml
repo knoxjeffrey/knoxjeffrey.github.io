@@ -13,8 +13,8 @@ paginate: 					5
 
 # Author Settings
 author_name: 				"Jeff Knox"
-author_url: 				""
-author_bio: 				"My name is Jeff Knox and I'm learning to become a Ruby on Rails developer."
+author_url: 				"https://github.com/knoxjeffrey"
+author_bio: 				"Ruby and Ruby on Rails developer based in Edinburgh, UK."
 author_image: 				"/assets/img/authorimage.jpg"
 
 
