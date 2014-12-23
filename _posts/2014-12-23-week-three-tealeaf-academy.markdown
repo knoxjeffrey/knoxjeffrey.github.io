@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Week Three Tealeaf Academy"
+title:  "Tealeaf Academy Week Three"
 date:   2014-12-23 14:38:49
 categories: Tealeaf Academy
 banner_image: ""
