@@ -33,8 +33,8 @@ linkedin_url:  				"https://www.linkedin.com/profile/public-profile-settings?trk
 # Theme Settings
 theme_disqus_shortname: 	"knoxjeffrey"
 theme_google_comments: 		false
-theme_analytics_id: 		"UA-28282324-1"
-theme_analytics_domain: 	"ecko.me"
+theme_analytics_id: 		"UA-58139054-1"
+theme_analytics_domain: 	"knoxjeffrey.github.io"
 theme_reading_time: 		true
 theme_autoload_comments: 	false
 theme_always_show_nav: 		false
