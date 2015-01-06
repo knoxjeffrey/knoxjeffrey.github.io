@@ -13,5 +13,6 @@ I'm using this blog to record my progress through the Tealeaf Academy course and
 
 <img height='40px' src='https://projecteuler.net/profile/knoxjeffrey.png' />
 <img height='40px' src='/media/baby_steps_award.png' alt='Baby Steps' title='Baby Steps'/>
+<img height='40px' src='/media/decathlete.png' alt='Decathlete' title='Decathlete'/>
 
 
