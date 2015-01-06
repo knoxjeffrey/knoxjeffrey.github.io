@@ -11,6 +11,7 @@ I have a degree in Computer Science and Management Science and graduated in 2002
 
 I'm using this blog to record my progress through the Tealeaf Academy course and to make note of useful information I gather along the way.
 
-####Project Euler Awards
-![Baby Steps](/media/baby_steps_award.png "Baby Steps")
+<img height='40px' src='https://projecteuler.net/profile/knoxjeffrey.png' />
+<img height='40px' src='/media/baby_steps_award.png' alt='Baby Steps' title='Baby Steps'/>
+
 
