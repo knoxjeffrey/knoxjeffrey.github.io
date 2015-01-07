@@ -70,9 +70,9 @@ There is some important information to take note of from this.  The first line s
 
 ##Routes And Controllers
 
-Okay, so that's the model layer taken care of and now I have to handle the url requests to my application.  When a request comes in, the routes.db file will have to handle the request and pass it on to a controller.
+Okay, so that's the model layer taken care of and now I have to handle the url requests to my application.  When a request comes in, the routes.rb file will have to handle the request and pass it on to a controller.
 
-If my application has a request to http://somuchtolearn.com/posts for example, I would need to have a statement such as ```resources :posts``` in my routes.db file in order to handle the request.  Rails will assume I have a controller file called ```posts_controller.rb``` which has a class of PostController.  Therefore, ```resources :posts``` is a quick way to map all HTTP verbs and URLs to controller actions in my PostsController class.  The basic class with no controller actions looks like as follows:
+If my application has a request to http://somuchtolearn.com/posts for example, I would need to have a statement such as ```resources :posts``` in my routes.rb file in order to handle the request.  Rails will assume I have a controller file called ```posts_controller.rb``` which has a class of PostController.  Therefore, ```resources :posts``` is a quick way to map all HTTP verbs and URLs to controller actions in my PostsController class.  The basic class with no controller actions looks like as follows:
 
     class PostsController < ApplicationController
 
