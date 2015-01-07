@@ -161,7 +161,7 @@ You can see that I have created instance variables in the methods and this allow
 
 ##Views
 
-If a user requests a url of say http://somuchtolearn.com/posts, this will be handled by the index method of the PostsController. In order to render this url, the controller requires a file called posts under the views folder and within that folder there needs to be an index.html.erb file.  The template for this could be as follows:
+If a user requests a url of say http://somuchtolearn.com/posts, this will be handled by the index method of the PostsController. In order to render this url, the controller requires a folder called posts under the views folder and within that folder there needs to be an index.html.erb file.  The template for this could be as follows:
 
     <p class'lead'>
         All Posts
