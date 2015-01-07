@@ -50,7 +50,7 @@ The first convention is the model file name.  In order for Active Record to map 
 
     end
 
-By subclassing ```ActiveRecord::Base``` I have now mapped to the posts table in the database.  Every object created from this class now represents a row of the table eg, ```post = Post.find(2)``` creates a post object the represents the row in the posts table with id of 2.   The attributes of the object represents the column names and Active Record has automatically created getter and setter methods for each column so I can retrieve and change the information eg, ```post.title``` will get the data from the title column of the row in the posts table with id 2.
+By subclassing ```ActiveRecord::Base``` I have now mapped to the posts table in the database.  Every object created from this class now represents a row of the table eg, ```post = Post.find(2)``` creates a post object that represents the row in the posts table with id of 2.   The attributes of the object represents the column names and Active Record has automatically created getter and setter methods for each column so I can retrieve and change the information eg, ```post.title``` will get the data from the title column of the row in the posts table with id 2.
 
 A nice way to test this out is in the terminal by typing ```rails console``` or if you want to make sure you don't make any commits to the database then you can use ```rails console --sandbox```.
 
