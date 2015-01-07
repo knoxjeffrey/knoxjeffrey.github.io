@@ -33,6 +33,7 @@ The create table method has already declared the posts table name for me because
           t.string :title
           t.string :url
           t.text :description
+          t.integer :user_id
           t.timestamps
         end
       end
