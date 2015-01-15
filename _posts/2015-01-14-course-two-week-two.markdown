@@ -72,7 +72,7 @@ This is a means to handle form error messages.  Using render holds onto the inst
       </div>
     <% end %>
     
-Errors.any? is a rails method that will return true or false depending on whether there are errors.  errors.full_messages is a handy method to return an array of string that hold each error message and this is nice and easy to parse to display the messages.  I also found this handy pluralize method that in this case will say either error or errors in the error message depending on the number of errors.  Nice little touch because it doesn't look as good when you get a message saying, "1 errors in this form".
+Errors.any? is a rails method that will return true or false depending on whether there are errors.  errors.full_messages is a handy method to return an array of strings that holds each error message and this is nice and easy to parse in order to display the messages.  I also found this handy pluralize method that in this case will say either error or errors in the error message depending on the number of errors.  Nice little touch because it doesn't look as good when you get a message saying, "1 errors in this form".
 
 ##Nested Routes
 
