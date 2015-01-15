@@ -42,7 +42,7 @@ My ```new.html.erb``` view file then has a form to allow the user to fill in the
       </div>
 
       <br/>
-      <%= f.submit @post.new_record? ? "Submit Post" : "Edit Post", class: "btn btn-primary" %>
+      <%= f.submit @post.new_record? ? "Submit Post" : "Update Post", class: "btn btn-primary" %>
     <% end %>
     
 Notice that @post is passed from the controller to the form_for.  The form_for method yields a form builder object (f), and methods to create form controls are called on the form builder object f.  Title, url and description should match the column names that are in my posts table in the database.
