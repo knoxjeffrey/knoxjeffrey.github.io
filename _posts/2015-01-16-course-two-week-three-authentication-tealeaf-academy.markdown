@@ -8,7 +8,7 @@ featured: true
 comments: true
 ---
 
-Adding user authentication to my application is obviously very important if I want to restrict what actions people can take on my site if they aren't registered.  There's quite a few steps to this so I thought I'd make a separate blog post to step through it.
+Adding user authentication to my application is obviously very important if I want to restrict what actions people can take on my site if they aren't registered and to track the behaviour of users that are registered.  There's quite a few steps to this so I thought I'd make a separate blog post to step through it.
 
 <!--more-->
 
