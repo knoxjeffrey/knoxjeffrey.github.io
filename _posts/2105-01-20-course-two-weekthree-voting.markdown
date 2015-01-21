@@ -109,9 +109,9 @@ I now will need an action in PostsController to handle the route:
 
     def vote
       posts = Post.find(params[:id])
-      @vote = Vote.create(voteable: post, creator: current_user, vote: params[:vote])
+      vote = Vote.create(voteable: post, creator: current_user, vote: params[:vote])
 
-      if @vote.valid?
+      if vote.valid?
         flash[:notice] = "You're vote was counted"
       else
         flash[:notice] = "You can only vote once"
@@ -146,6 +146,6 @@ If I want to display the post in the order of number of votes I can do this in P
 
 Lastly, I only want my users to vote once which will require a validation in the Vote model:
 
-    validates_uniqueness_of :creator, scope: :voteable - look up the documentation
+    validates_uniqueness_of :creator, scope: [:voteable_type, :voteable_id]
     
 That's pretty much it and it's a case of repeating for voting on comments.  Hope you enjoyed reading about polymorphic association and how to implement it in a Rails application.
