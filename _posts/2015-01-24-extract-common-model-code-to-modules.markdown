@@ -2,7 +2,7 @@
 layout: post
 title:  "Extract Common Model Code to Modules"
 date:   2015-01-24 20:07:00
-categories: Web Development
+categories: Tealeaf Academy
 banner_image: ""
 featured: false
 comments: true

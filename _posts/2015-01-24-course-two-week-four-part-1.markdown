@@ -2,7 +2,7 @@
 layout: post
 title:  "Tealeaf Academy Course Two/Week Four - Part 1"
 date:   2015-01-24 15:09:00
-categories: Web Development
+categories: Tealeaf Academy
 banner_image: ""
 featured: false
 comments: true
