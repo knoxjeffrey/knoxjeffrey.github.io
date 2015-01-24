@@ -8,7 +8,7 @@ featured: false
 comments: true
 ---
 
-In order to use a module I have to define a path in rails in which to find the module.  I need to go to application.rb and add in this line of code:
+In a previous post I wrote a post about how to do this and this post goes through some more ways to achieve the same result in a slightly more succint way.  In order to use a module in this case I have to define a path in rails in which to find the module.  I need to go to application.rb and add in this line of code:
 
     config.autoload_paths += %W(#{config.root}/lib)
     
