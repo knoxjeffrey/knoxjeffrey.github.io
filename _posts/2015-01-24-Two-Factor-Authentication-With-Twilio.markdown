@@ -18,6 +18,8 @@ In order to do this I will need phone and pin columns added to the users table w
         - show a form to enter pin returned by Twilio
           - restrict access only if successful login. You don't want people to be able to just go straight to this and then start trying to hack pin codes
           
+<!--more-->
+          
 On the signup page I can now add a field to capture the user phone number and also add phone to strong params in Users Controller:
 
     def user_params
