@@ -237,6 +237,12 @@ In rails you can specify what to do when different resources are requested and t
 
 Therefore /posts/something.json and /posts/something.xml are endpoints I will expose to my client or other applications in order to return data back in the requested format.
 
+##Adding Custom Fonts
+
+First I create a new folder under assets called fonts and then include any custom fonts I wish to use.  Add this code to application.rb to add the fonts I include to the asset pipeline:
+
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
 ##Conclusion
 These are just some of the topics I covered in the final week of course 2, I'm going to write up some more posts to cover the final topics.  I've been able to add some nice features to my application this week, I can't wait to see what else is coming up in the third course!
     
