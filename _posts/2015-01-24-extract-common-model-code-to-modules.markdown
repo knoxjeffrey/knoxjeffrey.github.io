@@ -1,8 +1,20 @@
+---
+layout: post
+title:  "Extract Common Model Code to Modules"
+date:   2015-01-24 20:07:00
+categories: Web Development
+banner_image: ""
+featured: false
+comments: true
+---
+
 In order to use a module I have to define a path in rails in which to find the module.  I need to go to application.rb and add in this line of code:
 
     config.autoload_paths += %W(#{config.root}/lib)
     
 This is essentially saying to add the array (%w is a notation to write an array of strings eg %w(foo bar) returns ['foo', 'bar']) into the autoload paths.  config.root is the application root path and lib is the folder under this.
+
+<!--more-->
 
 In my application I have repeated code for counting votes in my Post and Comment models. I can extract this to a voteable.rb file under the lib file and create a module called Voteable:
 
