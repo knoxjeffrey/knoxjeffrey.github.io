@@ -18,7 +18,7 @@ If you're interested, this is a snippet of the html that is generated from my co
 
     <a data-method="post" data-remote="true" href="/posts/13/vote?vote=true" rel="nofollow">
 
-and what is happening is that the anchor tag is being transformed by rails javascript into a form by ```data-method``` and then submitted in an ajax way (asynchronously behind the scenes) by ```data-remote``` with all of the parameters being packaged correctly.  It's important to note that ```data-method``` and ```data-remote``` work together
+and what is happening is that the anchor tag is being transformed by rails javascript into a form by ```data-method``` and then submitted in an ajax way (asynchronously behind the scenes) by ```data-remote``` with all of the parameters being packaged correctly.  It's important to note that ```data-method``` and ```data-remote``` work together.
 
 Previously when a vote was given, a POST request was made in the vote method in PostsController and CommentsController and then there was a redirect. As I'm now using ajax, I no longer want to redirect.  Instead I can do:
 
@@ -71,7 +71,7 @@ and then
       add_column :posts, :slug, :string
     end
     
-Alternatively I could make a migration of add_slugs if I had multiple slug columns to add and then just list an add_column for each table in the migration file.  Next I run rake db:migrate and then I need to generate the slug in the model
+Alternatively I could make a migration of add_slugs if I had multiple slug columns to add and then just list an add_column for each table in the migration file.  Next I run rake db:migrate and then I need to generate the slug in the model based on the post title in this example:
 
     def generate_slug!
       self.slug = self.title.gsub(' ', '-').downcase
@@ -91,7 +91,7 @@ Then I need to add slugs to all my current posts, etc in my test database, etc. 
     
     Post.all.each { |post| post.save }
     
-This works because the validations runs the generate_slug method before the save.  Need to be very careful doing this in production.  It is much better to do this with a migration which means it can also be rolled back:
+This works because the validations runs the generate_slug method before the save.  You need to be very careful doing this in production.  It is much better to do this with a migration:
 
     class PopulatePostsSlugs < ActiveRecord::Migration
       def change
@@ -178,7 +178,7 @@ To look up valid string values for time zone go to rails console:
 
     rake time:zones:all
     
-and choose the time zone.  Any time you choose application.rb you have to restart the server.
+and choose the time zone.  Any time you change application.rb you have to restart the server.
 
 Now I want to allow users to set their own time zone in their user profile:
     
