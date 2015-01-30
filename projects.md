@@ -28,3 +28,12 @@ This is my first project for the second Tealeaf Academy course and involved buil
 
 ###[D3: Scottish Health Inequality](http://scottish-health-inequality.herokuapp.com "Scottish Health Inequality")
 I wanted to gain experience with creating data visualisations based on data sets and D3 looked like a great framework to achieve this.  This came from my interest in healthcare and using data visualisation to help explain complex problems in simple, visual ways.  I started with this project about health inequality in Scotland because I found it both an interesting topic and also a way to try out lots of visualisations in D3.   In the future, I'd like to have the datasets based on the healthcare data for individual patients and to use that to help engage patients more effectively with own health so they actually stick to treatment plans.  This amazing [Ted Talk](http://vimeo.com/103501614) is where I got my inspiration from.  From my work with Ruby On Rails I feel like this is something I can achieve as I understand now how to connect a backend full of patient data to front end visualisations using D3.
+
+###[Ruby On Rails: CPD Boost](http://cpd-boost.herokuapp.com/posts/the-squat-part-2-6 "CPD Boost")
+For this I wanted to create an application that could be used by healthcare professionals to share blog articles about treatment techniques and at a later date I want to add more fuctionality to it so it can be used as a record for CPD.  The database structure was fairly similar to my PostIt! application but with an extra table for bookmarking posts and also more functionality.  On top of what I covered in the PostIt! application I also added the following:
+
+- Ability to delete posts and comments from the database
+- Extended the use of Ajax to reload entire blocks of code in a partial
+-  Worked with gems to generate images on the fly and to style my application like Pinterest
+
+I'm also want to implement caching for the application to help with page load times but this is something I will need to come back to.
