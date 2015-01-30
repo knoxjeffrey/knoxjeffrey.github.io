@@ -187,11 +187,7 @@ The way I have things works now but I was working on a way to cache the pages so
 
 To solve it I first looked at [actionpack-page_caching](https://github.com/rails/actionpack-page_caching) but after reading the documentation it was clear that it wasn't suitable for applications such as mine where users logged in and the information was dynamic.
 
-I then came across another way of doing it with an application called [Dalli](https://github.com/mperham/dalli) and this worked brilliantly when a user wasn't logged in.  The first request look as long as normal but any subsequent requests to that same page were lightning quick!  The problem came when logging in because as soon as I did that I would get the following error:
-
-    ActionController::InvalidAuthenticityToken in SessionsController#create
-    
-I assume this is something to do with page caching but when I check the error logs I can see that an authenticity token is being sent in the params.  I don't know if it is caching an old token and trying to use that but I still get the same issue even after clearing the cache on my browser.  If anyone out there can point me in the direction of a fix for this I'd greatly appreciate it. For the time being I'll just have to put up with a slight delay on the requests.
+I then came across another way of doing it with an application called [Dalli](https://github.com/mperham/dalli) and this also works really well for static content due to a complete page cache but I need to figure out how to handle the dynamic sections to either delete or alter the cache.  Some reading needed I think!
 
 ##Conclusion
 
