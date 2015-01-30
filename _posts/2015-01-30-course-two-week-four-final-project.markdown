@@ -60,20 +60,6 @@ This needed some logic to pull the info out of the posts table and I added this 
         self.votes.where(["user_id = ? and voteable_id = ? and voteable_type = ?", current_user.id, self.id, self.class.name])
       end
     ##########  END VOTE ##########
-    
-To handle the delete I needed to add an action in my PostsController
-
-    #all comments associated with post are automatically destroyed by dependent: :destroy in model
-    def destroy
-      @post.destroy
-      redirect_to posts_path
-    end
-    
-You'll notice my comment on this action and this takes advantage of another rails convention because if I delete a post then I obviously no longer want comments associated with that post in the database so I added this to my Post model;
-
-    has_many :comments, dependent: :destroy #removes all associated comments automatically
-    
-So now when I delete a post from the database, all associated comments are automatically deleted from the comments table.  Nice!
 
 ##Ajax
 
@@ -123,6 +109,22 @@ and then I handled this in a js file:
     $('#user-profile_<%= @post.slug %>').remove();
     
 Done!
+
+##Delete Posts And Comments
+
+Another piece of functionality I added was to be able edit and delete posts and also to just delete comments.  Editing a post was something I did in the PostIt! application but the delete was new for me.  For example, to handle the delete for a post I needed to add an action in my PostsController
+
+    #all comments associated with post are automatically destroyed by dependent: :destroy in model
+    def destroy
+      @post.destroy
+      redirect_to posts_path
+    end
+    
+You'll notice my comment on this action and this takes advantage of another rails convention because if I delete a post then I obviously no longer want comments associated with that post in the database so I added this to my Post model;
+
+    has_many :comments, dependent: :destroy #removes all associated comments automatically
+    
+So now when I delete a post from the database, all associated comments are automatically deleted from the comments table.  Nice!
 
 ##Masonry Grid
 
