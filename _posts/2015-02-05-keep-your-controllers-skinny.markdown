@@ -14,7 +14,7 @@ The requirement was that when a post was saved with a url, a gem I had installed
 
 <!--more-->
 
-I implemented this within the create and update actions in my controller. The problem was that it involved quite a few steps such as checking if it was a valid url and handling exceptions.  My controller code at this point was expanding and it didn't feel like this was the correct place for the code.
+I implemented this within the create and update actions in my controller. The problem was that it involved quite a few steps such as checking if it was a valid url and handling exceptions.  My controller code at this point was expanding and it didn't feel like this was the correct place for the code.  I had a similar issue with placing the code in the model layer because all of the code for generating the image url didn't have interaction with table data and would therefore be unnecessarily bloating the model layer.
 
 My solution after some reading was to create an ```app/services``` folder with a class ```GenerateImageUrlFromPostUrl``` that was a plain old Ruby object (PORO).
 
