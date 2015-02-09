@@ -27,3 +27,9 @@ When I started reading about pull requests I was under the impression that this 
 Another great feature is that if I get a comment in the pull request conversations saying code needs fixed then I can push again to that feature branch with the corrections and the new commits will show in the conversation.
 
 That's the main points to the GitHub Flow and this will be a great benefit for me when developing my applications.
+
+Before I finish, another couple of handy command line instructions are:
+
+- ```git branch -a``` to show local and remote branches
+- ```git branch -r``` to show remote branches
+- ```bit branch``` to show local branches
