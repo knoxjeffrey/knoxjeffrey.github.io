@@ -23,7 +23,7 @@ I've created this page to make note of anything I come across that I've found us
 
 - If you only need to run one of your tests in a file rather than all of them you can do this like so:
 
-  ```rspec /spec/controllers/my_controller_spec.rb:20```
+  ```rspec spec/controllers/my_controller_spec.rb:20```
   
   where ```20``` represents the line of the test I want to run.
 
