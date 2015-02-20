@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Snippets
-permalink: /projects/
+permalink: /snippets/
 comments: false
 ---
 
