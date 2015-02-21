@@ -19,6 +19,10 @@ I've created this page to make note of anything I come across that I've found us
   
   Check out the docs for more info
   
+- Ensure an object's attribute can only have integer values by validating at the model level
+
+  ```validates_numericality_of :position, { only_integer: true }```
+  
 ###RSpec
 
 - If you only need to run one of your tests in a file rather than all of them you can do this like so:
