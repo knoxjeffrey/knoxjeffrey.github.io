@@ -23,6 +23,19 @@ I've created this page to make note of anything I come across that I've found us
 
   ```validates_numericality_of :position, { only_integer: true }```
   
+- Rails Transactions: [Here's a link to a very good article](http://markdaggett.com/blog/2011/12/01/transactions-in-rails/)
+
+  In addition you can handle an exception like so:
+
+      begin 
+        ActiveRecord::Base.transaction do
+          ###your code###
+        end
+      rescue ActiveRecord::RecordInvalid
+        ###code to run if case of error###
+      end
+
+  
 ###RSpec
 
 - If you only need to run one of your tests in a file rather than all of them you can do this like so:
