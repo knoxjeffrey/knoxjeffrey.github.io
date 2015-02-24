@@ -35,7 +35,6 @@ I've created this page to make note of anything I come across that I've found us
         ###code to run if case of error###
       end
 
-  
 ###RSpec
 
 - If you only need to run one of your tests in a file rather than all of them you can do this like so:
@@ -43,6 +42,18 @@ I've created this page to make note of anything I come across that I've found us
   ```rspec spec/controllers/my_controller_spec.rb:20```
   
   where ```20``` represents the line of the test I want to run.
+  
+###Capybara
+
+- Debugging tips
+
+  Take a snapshot of the page: ```save_and_open_page```
+  
+  Retrieve the current state of the DOM as a string: ```print page.html```
+  
+  Save a screenshot: ```page.save_screenshot('screenshot.png')```
+  
+  Save and open screenshot: ```save_and_open_screenshot```
 
 ###Terminal
 
