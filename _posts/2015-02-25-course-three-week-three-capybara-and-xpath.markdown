@@ -10,11 +10,11 @@ comments: true
 
 In my last post on Dynamic CSS Elements for feature tests in Capybara I discussed techniques to get a handle on the attribute for an object in a list for example.  The main disadvantage with this however is that it in many cases you have to alter your view code in order to run your feature tests which I don't really like the idea of.
 
+<!--more-->
+
 (Click on the link to read my post on [Dynamic CSS Elements](../../../../2015/02/24/course-three-week-three-dynamic-css-elements/))
 
 Another method is available using xPath selectors in Capybara which means you don't have to touch your view codes and I'll out line the approach below.
-
-<!--more-->
 
 In the [previous post](../../../../2015/02/24/course-three-week-three-dynamic-css-elements/) I demonstrated how to get a handle on a text input field and change the value in Capybara with the following code:
 
