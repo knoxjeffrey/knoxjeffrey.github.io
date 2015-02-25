@@ -26,7 +26,7 @@ From the code you can see that this involves adding code in the view to create a
       fill_in "queue_items[][position]", with: 1
     end
     
-What this says is to find the ```tr``` tag that has a string containing the title of the video somewhere between the ```<tr>``` and ```</tr>``` tags and enter the value with 1.  It's not as easy to read in the test code but the views are much cleaner and I think this is more important.  However, there are ways to tidy up the test code which I'll go into at the end of the post.
+What this says is to find the ```tr``` tag that has a string containing the title of the video somewhere between the ```<tr>``` and ```</tr>``` tags and enter the value with 1.  It's not as easy to read the test code but the views are much cleaner and I think this is more important.  However, there are ways to tidy up the test code which I'll go into at the end of the post.
 
 The example in the [previous post](../../../../2015/02/24/course-three-week-three-dynamic-css-elements/) on how to test the expected result was as follows:
 
@@ -40,7 +40,7 @@ This query finds a string containing the title of the video under the ```tr``` t
 
 #Tidy Up Feature Code
 
-The aim of the feature test should be to have very readable code so that what you have in your scenario reads very naturally.  Therefore you can push the above code into methods so that an example scenario could read as follows:
+The aim of the feature test should be to have very readable code so that what you have in your scenario reads very naturally.  Therefore you can push the above code into helper methods so that an example scenario could read as follows:
     
     feature "user amends the queue" do
 
@@ -73,4 +73,4 @@ The aim of the feature test should be to have very readable code so that what yo
       end
     end
     
-Now it's nice and easy to understand what the scenario is testing.  Although writing in xPath is tricky compared to other techniques I prefer to use it in situations were the other alternatives require me to edit my view code.
+Now it's nice and easy to understand what the scenario is testing.  Although using xPath in Capybara is tricky compared to the other ways I prefer to use it in situations were the other alternatives require me to edit my view code.
