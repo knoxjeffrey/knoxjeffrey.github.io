@@ -34,7 +34,19 @@ I've created this page to make note of anything I come across that I've found us
       rescue ActiveRecord::RecordInvalid
         ###code to run if case of error###
       end
+      
+- [pluck(*column_names)](http://apidock.com/rails/ActiveRecord/Calculations/pluck)
 
+  This is an efficient way to select one or more attributes without having to load the entire record.  So for example, use:
+  
+      Person.pluck(:name)
+
+  instead of:
+  
+      Person.all.map(&:name)
+      
+  You can see in the second example that all the attributes of each record have to be retrieved first and then the name pulled out whereas the first example uses a SQL statement to just get the names.
+  
 ###RSpec
 
 - If you only need to run one of your tests in a file rather than all of them you can do this like so:
