@@ -47,6 +47,10 @@ I've created this page to make note of anything I come across that I've found us
       
   You can see in the second example that all the attributes of each record have to be retrieved first and then the name pulled out whereas the first example uses a SQL statement to just get the names.
   
+- ```rake db:migrate RAILS_ENV=test```
+
+  I used this the specifically migrate my test database when it would work automatically with ```rake db:migrate```
+  
 ###RSpec
 
 - If you only need to run one of your tests in a file rather than all of them you can do this like so:
