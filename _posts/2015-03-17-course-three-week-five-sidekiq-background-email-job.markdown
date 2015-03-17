@@ -108,7 +108,7 @@ As things stand my tests will fail because tests such as this are looking at Act
       end
     end
     
-To get around this I can test the workers inline which means that I can put Sidekiq synchronously with the request/response locally rather than asynchronously.  All this needs is a change to my ```spec_helper.rb``` file by adding:
+To get around this I can test the workers inline which means that I can use Sidekiq synchronously with the request/response locally rather than asynchronously.  All this needs is a change to my ```spec_helper.rb``` file by adding:
 
     require 'sidekiq/testing'
     Sidekiq::Testing.inline!
