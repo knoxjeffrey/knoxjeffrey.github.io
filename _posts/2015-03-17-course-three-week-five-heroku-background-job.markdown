@@ -37,7 +37,7 @@ Adding Puma to the web server is simple, just add the gem to the Gemfile:
 
      gem 'puma'
      
-and ```bundle install```.  Next I need to create a configuration file for Unicorn at ```config/puma.rb``` with the following code:
+and ```bundle install```.  Next I need to create a configuration file for Puma at ```config/puma.rb``` with the following code:
 
     workers Integer(ENV['WEB_CONCURRENCY'] || 2)
     threads_count = Integer(ENV['MAX_THREADS'] || 5)
