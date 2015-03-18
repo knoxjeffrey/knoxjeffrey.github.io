@@ -27,7 +27,11 @@ If I pushed to Heroku now it would automatically start the processes I have defi
 
 ## Puma
 
-The problem with the default Rails server is that it can only handle one request at a time.  The Puma web server is a way to start multiple instances of the Rails server.  You can follow the guide [here](https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server) but I'll go through the steps below.  The documentation for the Tealeaf Academy course suggested using the Unicorn web servers but the [docs on Heroku](https://devcenter.heroku.com/articles/rails-unicorn) suggested using Puma to prevent against a slow client attack. Not a big issue for my coursework application but thought I'd try using Puma anyway.
+The problem with the default Rails server is that it can only process one request at a time.  The Puma web server offers a big advantage in that it allows for processing of concurrent requests.  You can follow the guide [here](https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server) but I'll go through the steps below.  The documentation for the Tealeaf Academy course suggested using the Unicorn web servers but the [docs on Heroku](https://devcenter.heroku.com/articles/rails-unicorn) suggested using Puma to prevent against a slow client attack. Not a big issue for my coursework application but thought I'd try using Puma anyway.
+
+The other big difference between Puma and Unicorn is that Puma also uses threads in addition to worker processes.  This simply means that Unicorn can handle multiple processes with its workers but each process can only handle one request at a time.  When it's finished, the worker is added back into the pool of workers that are available to handle another incoming request.  Puma has the advantage of also having multiple workers but because it allows for multi-threading it means that each of those worker processes can concurrently handle multiple requests simultaneously.  This will make more use of the available CPU.
+
+One thing to keep in mind is that you can only utilize threads in Puma if the entire code-base is thread-safe, otherwise Puma is still fine to use but you should only utilize the worker processes.  Your code is thread safe if it only manipulates shared data structures in a manner that guarantees safe execution by multiple threads at the same time.
 
 Adding Puma to the web server is simple, just add the gem to the Gemfile:
 
@@ -115,6 +119,6 @@ and then from the command line from within the directory I typed
 
     chmod +x ./foreman.sh
     
-which compiles the script file into a form that can be run by the shell.  Now all I have to type from the shell is ```./foreman.sh```
+which sets the script file into an executable that can be run in the shell.  Now all I have to type from the shell is ```./foreman.sh```
 
 Hopefully you've found my post interesting this week, it took me a while to figure out some of this stuff so hopefully you can benefit.
