@@ -65,7 +65,7 @@ to the top of the file and also:
     end if Rails.env.production?
     mount Sidekiq::Web => '/sidekiq'
     
-within your routes.  Note that I've used the [Figaro Gem](https://github.com/laserlemon/figaro) to store my ENV values.
+within your routes.  Note that I've used the [Figaro Gem](https://github.com/laserlemon/figaro) to store my ENV values.  Therefore after I upload to Heroku I need to run the command ```figaro heroku:set -e production``` in order to set these values in my production environment.
 
 In addition, I need to add the following to my Gemfile:
 
