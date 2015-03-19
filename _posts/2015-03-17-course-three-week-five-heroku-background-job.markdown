@@ -31,7 +31,7 @@ The problem with the default Rails server is that it can only process one reques
 
 The other big difference between Puma and Unicorn is that Puma also uses threads in addition to worker processes.  This simply means that Unicorn can handle multiple processes with its workers but each process can only handle one request at a time.  When it's finished, the worker is added back into the pool of workers that are available to handle another incoming request.  Puma has the advantage of also having multiple workers but because it allows for multi-threading it means that each of those worker processes can concurrently handle multiple requests simultaneously.  This will make more use of the available CPU.
 
-One thing to keep in mind is that you can only utilize threads in Puma if the entire code-base is thread-safe, otherwise Puma is still fine to use but you should only utilize the worker processes.  Your code is thread safe if it only manipulates shared data structures in a manner that guarantees safe execution by multiple threads at the same time.
+One thing to keep in mind is that you can only utilize threads in Puma if the entire code-base is thread-safe, otherwise Puma is still fine to use but you should only utilize the worker processes.  Your code is thread safe if it only manipulates shared data structures in a manner that guarantees safe execution by multiple threads at the same time.  [This article should help to shed more light on what exactly is meant by thread-safe](https://bearmetal.eu/theden/how-do-i-know-whether-my-rails-app-is-thread-safe-or-not/?utm_source=rubyweekly&utm_medium=email).
 
 Adding Puma to the web server is simple, just add the gem to the Gemfile:
 
