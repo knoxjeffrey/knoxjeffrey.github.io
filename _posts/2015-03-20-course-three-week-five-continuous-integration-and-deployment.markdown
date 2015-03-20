@@ -69,7 +69,7 @@ Next, at the root of your application folder add a file ```circle.yml``` and I a
           - heroku run rake db:migrate --app knoxjeffrey-myflix-staging
           - heroku maintenance:off --app knoxjeffrey-myflix-staging
 
-Just replace the name of my production and staging sites with your own.  For this to work you will need a master branch (there by default) and staging branch on your GitHub repository.
+Just replace the name of my production and staging sites with your own and also change the ruby version to match what you are using.  For this to work you will need a master branch (there by default) and staging branch on your GitHub repository.
 
 I initially had an issue creating a staging branch because I already had a staging tag on GitHub after using Paratrooper [see previous post](../../../../2015/03/19/course-three-week-five-simple-deployment-pipeline/).  As I am no longer using Paratrooper I can just get rid of the tag by typing the following at the command prompt:
 
