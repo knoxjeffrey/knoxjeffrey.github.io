@@ -41,7 +41,7 @@ Below is a sample of code from my MyFLiX application I am building in the Tealea
 
         if @user.save
           check_for_invitation
-          AppMailer.notify_on_user_signup(@user)
+          AppMailer.notify_on_user_signup(@user).deliver
           redirect_to sign_in_path
         else
           render :new
