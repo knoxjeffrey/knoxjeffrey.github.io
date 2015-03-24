@@ -113,18 +113,14 @@ This is obviously a fairly basic setup for uploading images but it's a good base
 
 As I finished this post I thought I'd write about one other little issue I had when I was writing tests.  Here's a quick overview of what I needed to test.  When a user clicks on a video, they are taken to a page that displays a large cover image of the video if one is available.  However, if there isn't a cover image then I display a dummy image.  I have a method in my ```video.rb``` model that tests for the presence of a large cover:
 
-    # If large_cover is present then test if it actually exists. If so then display image, in all other cases disply dummy image
+    # If large_cover is present then return image url,  otherwise disply dummy image
     def display_large_video_image
-      if self.large_cover.present?
-        self.large_cover.file.exists? ? self.large_cover_url : "http://dummyimage.com/665x375/000/fff.png&text=No+Preview+Available"
-      else  
-        "http://dummyimage.com/665x375/000/fff.png&text=No+Preview+Available"
-      end
+      self.large_cover.present? ? self.large_cover_url : "http://dummyimage.com/665x375/000/fff.png&text=No+Preview+Available"
     end
     
-The line ```self.large_cover.file.exists?``` uses CarrierWave to check for the existence of the file in Amazon S3, you can see the documentation [here](http://www.rubydoc.info/github/jnicklas/carrierwave/CarrierWave/Storage/Fog/File#exists?-instance_method).  ```self.large_cover_url``` then takes advantage of the ```_url``` helper which provides an absolute path for ```large_cover```, including protocol and server name.
+```self.large_cover_url``` then takes advantage of the ```_url``` helper which provides an absolute path for ```large_cover```, including protocol and server name.
 
-That all works well in my application but I was having trouble getting my test for this method working properly.  After quite some time I finally got it working thanks to [this documentation](https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Use-test-factories).  I won't write out all of the tests but this is the one I was using to test if the method would display the large cover image:
+That all works well in my application but I was having trouble getting my test for this method working properly.  I won't write out all of the tests but this is the one I was using to test if the method would display the large cover image:
 
     describe :display_large_video_image do
 
@@ -157,10 +153,10 @@ To solve this I added to the video fabricator:
     end
 
     Fabricator(:video_upload, from: :video) do
-      large_cover { Rack::Test::UploadedFile.new("./spec/support/uploads/monk_large.jpg") }
+      large_cover { File.open("./spec/support/uploads/monk_large.jpg") }
     end
     
-This causes Rack::Test to build and issue a multipart request which solved my issue and then I changed my test:
+Now my test was as follows:
 
     it "should display a large video image if one is available" do
       video2 = object_generator(:video_upload)
