@@ -105,7 +105,7 @@ You will notice that I have setup 3 separate buckets so I can test the functiona
       end
     end
 
-Obviously change your environment variables to match your credentials and you should now be all set.
+This is what I will do from now on but having a bucket for testing was useful for me when I was learning what to do and made things easier to debug.  Obviously change your environment variables to match your credentials and you should now be all set.
 
 This is obviously a fairly basic setup for uploading images but it's a good base to work from to add more complexity to the application.  Happy uploading!
 
