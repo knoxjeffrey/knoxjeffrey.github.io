@@ -81,7 +81,7 @@ Notice where I have ```= yield :head```, this is where the javascript will be in
 
         if (response.error) {
           // Show the errors on the form
-          $form.find('.payment-errors').text(response.error.message);
+          $form.find('.payment-errors').html('<div class="alert alert-danger">' + response.error.message);
           $form.find('button').prop('disabled', false);
         } else {
           // response contains id and card, which contains additional card details
