@@ -178,7 +178,7 @@ I'll also talk through my ```process_payment``` method as well.  I originally ha
             amount: amount,
             currency: "gbp",
             source: token,
-            description: "Sign up charge for #{email}"
+            description: "Charge for #{email}"
           ) 
         rescue Stripe::CardError => e
           controller.flash[:danger] = e.message
