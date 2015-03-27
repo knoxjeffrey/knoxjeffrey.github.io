@@ -129,7 +129,6 @@ With that done I need to edit my create action for my UsersController so the pay
         if @user.save
 
           if process_payment
-            send_email
             redirect_to sign_in_path
           else
             rollback = true
