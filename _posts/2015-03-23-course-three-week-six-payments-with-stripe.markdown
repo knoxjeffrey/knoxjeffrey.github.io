@@ -192,7 +192,7 @@ Most of this is pretty straightforward but one problem I had when writing this w
 
     payment_completed, message = process_payment
     
-This means that ```payment_completed``` is equal to ```false``` and ```message``` is equal to ```e.message``` if the payment fails whilst ```payment_completed``` will be true is the payment completes.  This made things a lot better because with my first effort to fix things I was passing in the controller as an argument in ```ProcessStripePayment.new()``` because I had to return the false value to make my creat action work in the controller.
+This means that ```payment_completed``` is equal to ```false``` and ```message``` is equal to ```e.message``` if the payment fails whilst ```payment_completed``` will be true is the payment completes.  This made things a lot better because with my first effort to fix things I was passing in the controller as an argument in ```ProcessStripePayment.new()``` because I had to return the false value to make my create action work in the controller.
 
 Creating my service object has helped to clean up my controller a lot, made it easier to test the payment process and I've tried to make it loosely coupled so it can be used elsewhere in my application if other payments need to be made.  I haven't actually written the tests for this yet but I'll get that after I submit the code for the course to get feedback on how I have done it.  However, I will talk about the issues with my existing tests next.
 
