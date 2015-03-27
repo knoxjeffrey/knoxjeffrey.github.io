@@ -129,6 +129,7 @@ With that done I need to edit my create action for my UsersController so the pay
         if @user.save
 
           if process_payment
+            send_email
             redirect_to sign_in_path
           else
             rollback = true
@@ -149,31 +150,50 @@ With that done I need to edit my create action for my UsersController so the pay
     end
     
     def process_payment
-      begin
-        Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-        Stripe::Charge.create(
-          amount: 999,
-          currency: "gbp",
-          source: params[:stripeToken],
-          description: "Sign up charge for #{@user.email_address}"
-        ) 
-      rescue Stripe::CardError => e
-        flash[:danger] = e.message
-        return false
-      end  
+      ProcessStripePayment.new(self, '999', @user.email_address, params[:stripeToken]).charge_card
     end
   
-Now, before I go on I admit that there are issues with how I have done this.  One of the main things is that the payment process really shouldn't be included in the controller because this is not the job of a controller.  This should be extracted into a service object and I think we may be doing this later in the course so look out for another post on this from me.  Also, in the course a user would still be created even if the payment process failed which isn't ideal and again they will deal with this later in the course but I've done somewhat of a hack to get around this for now by setting a ```rollback``` variable.
+In the Tealeaf course a user would still be created even if the payment process failed which isn't ideal although they will deal with this later in the course. However, I've had a go at this myself by setting a ```rollback``` variable.
 
 I'm using a transaction to allow me to rollback the database if the payment process fails which means that the user record will not be stored in the database.
 
-If the payment fails then you can see that I change ```rollback``` to true and also call ```raise ActiveRecord::Rollback```.  What I didn't realise initially is that once this call is made, it will jump to the line immediately after the end of the transaction.  This took me a while to debug and was why I ended up needing the ```rollback``` variable because I only want ```redirect_to register_path``` to execute if the payment failed.  If I didn't do the redirect after ```raise ActiveRecord::Rollback``` then I was getting an error that the controller was expecting a view template.
+If the payment fails then you can see that I change ```rollback``` to true and also call ```raise ActiveRecord::Rollback```.  What I didn't realise initially is that once this call is made, it will jump to the line immediately after the end of the transaction.  This took me a while to debug and was why I ended up needing the ```rollback``` variable because I only want ```redirect_to register_path``` to execute if the payment failed.  If I didn't do the redirect after ```raise ActiveRecord::Rollback``` then I was getting an error that the controller was expecting a view template.  I also tried using [```rescue_from```](http://api.rubyonrails.org/classes/ActiveSupport/Rescuable/ClassMethods.html) to handle this but I could not get it to work for ```ActiveRecord::Rollback``` which is why I ended up with the method above.
 
-I'll make a quick mention of my ```process_payment``` method as well.  You can see that I'm using ```params[:stripeToken]``` to capture the token that is returned to my server and then ```rescue``` to handle any errors with the card like if it was declined for example.
+I'll also talk through my ```process_payment``` method as well.  I originally had the code for processing the Stripe payment in the controller but I felt that it really didn't belong there and therefore I extracted it as a service object in ```app/services/process_stripe_payment.rb``` and the code is as follows:
+
+    class ProcessStripePayment
+      attr_reader :controller, :amount, :email, :token
+
+      def initialize(controller, amount, email, token)
+        @controller = controller
+        @amount = amount
+        @email = email
+        @token = token
+      end
+
+      def charge_card
+        begin
+          Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+          Stripe::Charge.create(
+            amount: amount,
+            currency: "gbp",
+            source: token,
+            description: "Sign up charge for #{email}"
+          ) 
+        rescue Stripe::CardError => e
+          controller.flash[:danger] = e.message
+          return false
+        end  
+      end
+    end
+
+Most of this is pretty straightforward but one problem I had when writing this was to get the flash message to work.  In the end I made it so that the controller dependency is being injected into my ProcessStripePayment object by using ```controller.flash[:danger] = e.message```.  When I just had ```flash[:danger] = e.message``` then I would get error saying that flash was an undefined variable or method.
+
+Creating my service object has helped to clean up my controller a lot, made it easier to test the payment process and I've tried to make it loosely coupled so it can be used elsewhere in my application if other payments need to be made.  I haven't actually written the tests for this yet but I'll get that after I submit the code for the course to get feedback on how I have done it.  However, I will talk about the issues with my existing tests next.
 
 ## Tests With Stripe
 
-Once I got all of this up and running I ran my test suite and noticed that I was getting failures on the user signup process because a successful payment had to be made in order for my user to be registered.  I'll include one of my UsersController specs to give an example:
+Once I got my payment code up and running I ran my test suite and noticed that I was getting failures on the user signup process because a successful payment had to be made in order for my user to be registered.  I'll include one of my UsersController specs to give an example:
 
     describe "POST create" do
       context "valid input details" do
@@ -204,7 +224,7 @@ You can see that there is no token in the response for this test which is making
       end
     end  
     
-I also had the same issue with my feature tests that was checking that a user could sign up after being invited by a friend:
+I also had the same issue with my feature test that was checking that a user could sign up after being invited by a friend:
 
     require 'spec_helper'
 
