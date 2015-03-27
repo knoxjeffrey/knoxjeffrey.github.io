@@ -14,7 +14,7 @@ The last part of week three in the Tealeaf Academy course involved implementing 
 
 In the course we are using [Stripe](https://stripe.com/) to process our payments which makes it super simple because of it's great documentation. No merchant accounts and no card information flowing through your own servers, everything is handled by Stripe so you receive the money (minus a small handing charge of course) without the hassle.
 
-Naturally the first thing to do at this point is to sign up to Stripe and when you do you'll will notice that they have a live mode and test mode which is great because whilst building the application I never need to use a real card and in fact in the [testing documentation](https://stripe.com/docs/testing) you can see that that there are lots of card numbers they provide for use in test mode that will generate different outcomes.
+Naturally the first thing to do at this point is to sign up to Stripe and when you do you will notice that they have a live mode and test mode which is great because whilst building the application I never need to use a real card.  Have a look at the [testing documentation](https://stripe.com/docs/testing) and you can see that that there are lots of card numbers they provide for use in test mode that will generate different outcomes.
 
 Next up include ```gem 'stripe'``` in the Gemfile and ```bundle install```.
 
@@ -263,4 +263,4 @@ Now you'll see that I have abstracted a lot of my code away but the important me
     
 That's some examples of how to test with Stripe and now my test suite is passing.
 
-Keep an eye out for other posts on this topic from me in the near future because as mentioned above some sections of the code need to be tidied up.  However, this should be enough to keep you busy for a while!
+Keep an eye out for other posts on this topic from me in the near future because we'll be tackling aspects of this next week I think.  However, this should be enough to keep you busy for a while!
