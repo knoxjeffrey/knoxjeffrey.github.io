@@ -128,9 +128,13 @@ With that done I need to edit my create action for my UsersController so the pay
       ActiveRecord::Base.transaction do
         if @user.save
 
-          if process_payment
+          #take advantage of returning multiple values from process_payment
+          payment_completed, message = process_payment
+
+          if payment_completed
             redirect_to sign_in_path
           else
+            flash[:danger] = message
             rollback = true
             raise ActiveRecord::Rollback
           end
@@ -161,10 +165,9 @@ If the payment fails then you can see that I change ```rollback``` to true and a
 I'll also talk through my ```process_payment``` method as well.  I originally had the code for processing the Stripe payment in the controller but I felt that it really didn't belong there and therefore I extracted it as a service object in ```app/services/process_stripe_payment.rb``` and the code is as follows:
 
     class ProcessStripePayment
-      attr_reader :controller, :amount, :email, :token
+      attr_reader :amount, :email, :token
 
-      def initialize(controller, amount, email, token)
-        @controller = controller
+      def initialize(amount, email, token)
         @amount = amount
         @email = email
         @token = token
@@ -180,13 +183,16 @@ I'll also talk through my ```process_payment``` method as well.  I originally ha
             description: "Charge for #{email}"
           ) 
         rescue Stripe::CardError => e
-          controller.flash[:danger] = e.message
-          return false
+          return [false, e.message]
         end  
       end
     end
 
-Most of this is pretty straightforward but one problem I had when writing this was to get the flash message to work.  In the end I made it so that the controller dependency is being injected into my ProcessStripePayment object by using ```controller.flash[:danger] = e.message```.  When I just had ```flash[:danger] = e.message``` then I would get error saying that flash was an undefined variable or method.
+Most of this is pretty straightforward but one problem I had when writing this was to get the flash message to work.  In the end I realised that I could actually return 2 values in an array in the resuce block.  I didn't initially realise I could do this but it was easy to get the values out from the array with this line in the controller:
+
+    payment_completed, message = process_payment
+    
+This means that ```payment_completed``` is equal to ```false``` and ```message``` is equal to ```e.message``` if the payment fails whilst ```payment_completed``` will be true is the payment completes.  This made things a lot better because with my first effort to fix things I was passing in the controller as an argument in ```ProcessStripePayment.new()``` because I had to return the false value to make my creat action work in the controller.
 
 Creating my service object has helped to clean up my controller a lot, made it easier to test the payment process and I've tried to make it loosely coupled so it can be used elsewhere in my application if other payments need to be made.  I haven't actually written the tests for this yet but I'll get that after I submit the code for the course to get feedback on how I have done it.  However, I will talk about the issues with my existing tests next.
 
