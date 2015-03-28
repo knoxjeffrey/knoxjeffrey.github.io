@@ -122,50 +122,46 @@ I have other info in my form to collect the user data but for the sake of keepin
 With that done I need to edit my create action for my UsersController so the payment can be processed if the token is returned from Stripe.  This looks as follows:
 
     def create
-      rollback = false
-      @user = User.new(user_params)
-
       ActiveRecord::Base.transaction do
+        @user = User.new(user_params)
         if @user.save
-
-          #take advantage of returning multiple values from process_payment
-          payment_completed, message = process_payment
-
-          if payment_completed
-            redirect_to sign_in_path
+          check_for_invitation
+          if process_payment.is_successful
+            send_email
+            redirect_to sign_in_path and return
           else
-            flash[:danger] = message
-            rollback = true
-            raise ActiveRecord::Rollback
+            flash[:danger] = process_payment.error_message
+            raise ActiveRecord::Rollback #jumps to end of transaction
           end
-
         else
-          render :new
+          render :new and return
         end
       end
-      redirect_to register_path if rollback
+      redirect_to register_path if !process_payment.is_successful
     end 
     
     private
   
-    def user_params
-      params.require(:user).permit(:email_address, :password, :full_name)
+    def payment_processor
+      StripePaymentProcessor.new('999', @user.email_address, params[:stripeToken])
     end
-    
+  
     def process_payment
-      ProcessStripePayment.new(self, '999', @user.email_address, params[:stripeToken]).charge_card
+      payment_processor.charge_card
     end
   
 In the Tealeaf course a user would still be created even if the payment process failed which isn't ideal although they will deal with this later in the course. However, I've had a go at this myself by setting a ```rollback``` variable.
 
 I'm using a transaction to allow me to rollback the database if the payment process fails which means that the user record will not be stored in the database.
 
-If the payment fails then you can see that I change ```rollback``` to true and also call ```raise ActiveRecord::Rollback```.  What I didn't realise initially is that once this call is made, it will jump to the line immediately after the end of the transaction.  This took me a while to debug and was why I ended up needing the ```rollback``` variable because I only want ```redirect_to register_path``` to execute if the payment failed.  If I didn't do the redirect after ```raise ActiveRecord::Rollback``` then I was getting an error that the controller was expecting a view template.  I also tried using [```rescue_from```](http://api.rubyonrails.org/classes/ActiveSupport/Rescuable/ClassMethods.html) to handle this but I could not get it to work for ```ActiveRecord::Rollback``` which is why I ended up with the method above.
+If the payment fails then you can see that I call ```raise ActiveRecord::Rollback```.  What I didn't realise initially is that once this call is made, it will jump to the line immediately after the end of the transaction.  This took me a while to debug and was why I have the ```redirect_to register_path``` at the end of the transaction.  If I didn't do the redirect after ```raise ActiveRecord::Rollback``` then I was getting an error that the controller was expecting a view template.  I also tried using [```rescue_from```](http://api.rubyonrails.org/classes/ActiveSupport/Rescuable/ClassMethods.html) to handle this but I could not get it to work for ```ActiveRecord::Rollback``` which is why I ended up with the method above.
 
 I'll also talk through my ```process_payment``` method as well.  I originally had the code for processing the Stripe payment in the controller but I felt that it really didn't belong there and therefore I extracted it as a service object in ```app/services/process_stripe_payment.rb``` and the code is as follows:
 
-    class ProcessStripePayment
+    class StripePaymentProcessor
+
       attr_reader :amount, :email, :token
+      attr_accessor :error_message, :is_successful
 
       def initialize(amount, email, token)
         @amount = amount
@@ -177,22 +173,21 @@ I'll also talk through my ```process_payment``` method as well.  I originally ha
         begin
           Stripe.api_key = ENV['STRIPE_SECRET_KEY']
           Stripe::Charge.create(
-            amount: amount,
-            currency: "gbp",
-            source: token,
-            description: "Charge for #{email}"
-          ) 
+          amount: amount,
+          currency: "gbp",
+          source: token,
+          description: "Charge for #{email}"
+          )
+          self.is_successful = true
         rescue Stripe::CardError => e
-          return [false, e.message]
-        end  
+          self.error_message = e.message
+        end 
+        self
       end
+
     end
 
-Most of this is pretty straightforward but one problem I had when writing this was to get the flash message to work.  In the end I realised that I could actually return 2 values in an array in the resuce block.  I didn't initially realise I could do this but it was easy to get the values out from the array with this line in the controller:
-
-    payment_completed, message = process_payment
-    
-This means that ```payment_completed``` is equal to ```false``` and ```message``` is equal to ```e.message``` if the payment fails whilst ```payment_completed``` will be true is the payment completes.  This made things a lot better because with my first effort to fix things I was passing in the controller as an argument in ```ProcessStripePayment.new()``` because I had to return the false value to make my create action work in the controller.
+Note that in the charge_card method I am returning self which returns the stripe service object and there therefore allows me to call ```process_payment.is_successful``` and ```process_payment.error_message``` in the controller.
 
 Creating my service object has helped to clean up my controller a lot, made it easier to test the payment process and I've tried to make it loosely coupled so it can be used elsewhere in my application if other payments need to be made.  I haven't actually written the tests for this yet but I'll get that after I submit the code for the course to get feedback on how I have done it.  However, I will talk about the issues with my existing tests next.
 
