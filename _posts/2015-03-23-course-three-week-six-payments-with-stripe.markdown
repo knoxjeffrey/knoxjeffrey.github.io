@@ -150,9 +150,7 @@ With that done I need to edit my create action for my UsersController so the pay
       payment_processor.charge_card
     end
   
-In the Tealeaf course a user would still be created even if the payment process failed which isn't ideal although they will deal with this later in the course. However, I've had a go at this myself by setting a ```rollback``` variable.
-
-I'm using a transaction to allow me to rollback the database if the payment process fails which means that the user record will not be stored in the database.
+In the Tealeaf course a user would still be created even if the payment process failed which isn't ideal although they will deal with this later in the course. However, I've had a go at this myself by using a transaction to allow me to rollback the database if the payment process fails which means that the user record will not be stored in the database.
 
 If the payment fails then you can see that I call ```raise ActiveRecord::Rollback```.  What I didn't realise initially is that once this call is made, it will jump to the line immediately after the end of the transaction.  This took me a while to debug and was why I have the ```redirect_to register_path``` at the end of the transaction.  If I didn't do the redirect after ```raise ActiveRecord::Rollback``` then I was getting an error that the controller was expecting a view template.  I also tried using [```rescue_from```](http://api.rubyonrails.org/classes/ActiveSupport/Rescuable/ClassMethods.html) to handle this but I could not get it to work for ```ActiveRecord::Rollback``` which is why I ended up with the method above.
 
