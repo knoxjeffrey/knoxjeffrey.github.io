@@ -125,9 +125,7 @@ With that done I need to edit my create action for my UsersController so the pay
       ActiveRecord::Base.transaction do
         @user = User.new(user_params)
         if @user.save
-          check_for_invitation
           if process_payment.is_successful
-            send_email
             redirect_to sign_in_path and return
           else
             flash[:danger] = process_payment.error_message
