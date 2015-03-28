@@ -12,7 +12,7 @@ The last part of week three in the Tealeaf Academy course involved implementing 
 
 <!--more-->
 
-In the course we are using [Stripe](https://stripe.com/) to process our payments which makes it super simple because of it's great documentation. No merchant accounts and no card information flowing through your own servers, everything is handled by Stripe so you receive the money (minus a small handing charge of course) without the hassle.
+In the course we are using [Stripe](https://stripe.com/) to process our payments which makes it super simple because of its great documentation. No merchant accounts and no card information flowing through your own servers, everything is handled by Stripe so you receive the money (minus a small handing charge of course) without the hassle.
 
 Naturally the first thing to do at this point is to sign up to Stripe and when you do you will notice that they have a live mode and test mode which is great because whilst building the application I never need to use a real card.  Have a look at the [testing documentation](https://stripe.com/docs/testing) and you can see that that there are lots of card numbers they provide for use in test mode that will generate different outcomes.
 
