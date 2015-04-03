@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Tealeaf Academy Course Three/Week Seven - Payments With Stripe Part 3 - Doubles And Stubs"
+title:  "Tealeaf Academy Course Three/Week Seven - Payments With Stripe Part 3 - Testing"
 date:   2015-04-02 13:14:00
 categories: Tealeaf Academy
 banner_image: ""
