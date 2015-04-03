@@ -188,7 +188,7 @@ Then in a controller action I can decide what happens depending on the level of 
 
 but with the ```UserLevelAccess``` class I now have:
 
-    class CourseController < ApplicationController
+    class ProjectController < ApplicationController
 
       ...
 
@@ -216,7 +216,7 @@ Designing it this way means my code is re-useable if I need to set the policy in
 
 Domain objects in Rails typically inherit from ```ActiveRecord::Base``` and are responsible for persisting or saving data attributes to a relational database table.  However there will be cases in applications where the models do not map to database tables.  I'll extend my example from above to explain when this might be useful:
 
-    class CourseController < ApplicationController
+    class ProjectController < ApplicationController
 
       ...
 
@@ -278,7 +278,7 @@ Here you can see that a user is having their balance deducted depending on their
     
 Now I can change my controller to be this:
 
-    class CourseController < ApplicationController
+    class ProjectController < ApplicationController
 
       ...
 
@@ -342,7 +342,7 @@ I can use service objects to make the business process of credit deduction in th
     
 You will notice that I have pulled out all of the code related to credit deduction from the controller into this service object.  With this done my controller has been cleaned up considerably and is much more explicit:
     
-    class CourseController < ApplicationController
+    class ProjectController < ApplicationController
 
       ...
 
