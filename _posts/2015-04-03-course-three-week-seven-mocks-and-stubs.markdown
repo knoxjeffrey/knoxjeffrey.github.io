@@ -30,8 +30,8 @@ I first quickly talk about the difference between mocks and stubs.  Mocks in tes
 
 For example, my controller test for the create action could look like this:
 
-    it "delegates to CreditDeduction to deduct credit" do
-      credit_deduction = double("credit deduction")
+    it "delegates to CreditDeduction to deduct_credit" do
+      credit_deduction = double("credit_deduction")
       CreditDeduction.stub(:new).with(user_object).and_return(credit_deduction)
       expect(credit_deduction).to receive(:deduct_credit)
       post: create, project: {name: "code project", description: "a test project"}
