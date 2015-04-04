@@ -14,7 +14,9 @@ In my previous post I talk about taking payments in your application with Stripe
 
 (Click on the link to read my last post on the [Payments With Stripe](../../../../2015/03/26/course-three-week-six-payments-with-stripe/))
 
-I decided that Stripe was too tightly coupled with my application and that could create issues down the line if I decided to change my payment provider if Stripe hiked up their rates for example.  I designed my ```UserController``` class to look as follows for the create action:
+I decided that Stripe was too tightly coupled with my application and that could create issues down the line if I decided to change my payment provider if Stripe hiked up their rates for example.  I had quite a bit of discussion in the course about whether I should do this from the outset or stick to the principle of YAGNI.  At this point in time I still like the idea of designing all of my 3rd party services as pluggable components that can easily be swapped out because these have a much higher chance of changing.  This approach may well come back to bite me in some way in the future and I'm sure my approach will alter as I gain more experience.  
+
+I designed my ```UserController``` class to look as follows for the create action:
 
     def create
       @user = User.new(user_params)
