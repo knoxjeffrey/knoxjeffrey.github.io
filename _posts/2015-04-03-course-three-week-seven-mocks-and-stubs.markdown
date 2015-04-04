@@ -26,7 +26,7 @@ This is a quick post to discuss the idea of mocks in Rails testing.  I demonstra
 
 (Click on the link to read my last post on the [Beyond MVC](../../../../2015/04/03/course-three-week-seven-beyond-mvc/))
 
-I first quickly talk about the difference between mocks and stubs.  Mocks in tests are used to simply record and verify expectations.  In the example above I will use a mock to verify that ```CreditDeduction.new(current_user)``` does indeed receive the method ```deduct_credit``` but I don't care what actually happens after it receives the method.
+Mocks in tests are used to simply record and verify expectations.  In the example above I will use a mock to verify that ```CreditDeduction.new(current_user)``` does indeed receive the method ```deduct_credit``` but I don't care what actually happens after it receives the method.
 
 For example, my controller test for the create action could look like this:
 
