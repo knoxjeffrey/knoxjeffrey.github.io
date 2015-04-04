@@ -50,23 +50,26 @@ Here is a controller action:
           flash[:success] = "Thank you for registering, please sign in."
           redirect_to sign_in_path
         else
-          flash[:danger] = attempt_card_payment.error
-          redirect_to register_path
+          handle_create_error(attempt_card_payment.error)
         end
       else
-        flash[:danger] = "Please fix the errors in this form."
-        render :new
+        handle_create_error("Please fix the errors in this form.")
       end
     end 
-
+    
     private
-
+    
     def registration_payment_processor
       ExternalPaymentProcessor.create_payment_process(
         amount: 999,
         email: @user.email_address,
         token: params[:stripeToken]
       )
+    end
+    
+    def handle_create_error(error)
+      flash[:danger] = error
+      render :new
     end
     
 And a snippet of a test for this action:
@@ -79,9 +82,9 @@ And a snippet of a test for this action:
           let(:attempt_card_payment) { double(:attempt_card_payment) }
           before do
             expect(attempt_card_payment).to receive(:processed).and_return(true)
-            ExternalPaymentProcessor.stub(:create_payment_process).and_return(attempt_card_payment) 
+            allow(ExternalPaymentProcessor).to receive(:create_payment_process).and_return(attempt_card_payment) 
           end
-
+          
 In this case I still don't want to actually run the ```create_payment_process``` on ```ExternalPaymentProcessor``` as was the case in the mock example but this time I do actually care about the state of ```ExternalPaymentProcessor``` because it affects the flow of my controller action.  In this case I can test what happens if ```attempt_card_payment``` is true and can also write more tests to verify what happens when it is not.
 
 It is a subtle difference between the two but hopefully this helps to clarify it a bit more.  You can read more on this by reading [this post by Martin Fowler](http://martinfowler.com/articles/mocksArentStubs.html).

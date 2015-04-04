@@ -23,17 +23,17 @@ The first thing I want to test is the ```ExternalPaymentProcessor``` class which
 
       attr_accessor :processed, :error
 
-      def initialize(options={})
-        @processed = options[:processed]
-        @error = options[:error]
-      end
-
       def self.create_payment_process(options={})
         response = payment_processor.new(options).process_card
         response == true ? new(processed: response) : new(error: response)
       end
 
       private
+
+      def initialize(options={})
+        @processed = options[:processed]
+        @error = options[:error]
+      end
 
       def self.payment_processor
         StripePaymentProcessor
@@ -91,23 +91,26 @@ The important part of my [last post](../../../../2015/04/01/course-three-week-se
           flash[:success] = "Thank you for registering, please sign in."
           redirect_to sign_in_path
         else
-          flash[:danger] = attempt_card_payment.error
-          redirect_to register_path
+          handle_create_error(attempt_card_payment.error)
         end
       else
-        flash[:danger] = "Please fix the errors in this form."
-        render :new
+        handle_create_error("Please fix the errors in this form.")
       end
     end 
-
+    
     private
-
+    
     def registration_payment_processor
       ExternalPaymentProcessor.create_payment_process(
         amount: 999,
         email: @user.email_address,
         token: params[:stripeToken]
       )
+    end
+    
+    def handle_create_error(error)
+      flash[:danger] = error
+      render :new
     end
     
 You can see in my code that ```attempt_card_payment``` is equal to ```registration_payment_processor``` which instantiates the ExternalPaymentProcessor class.  I won't go into the details of that here although you can read the last post for more info on it.  All you need to know is that this will hit the external servers of my payment provider (Stripe in this case).  I want to be able to run my tests for the UsersController without actually hitting the servers.  I can test the interaction with the payment provider in the ```ExternalPaymentProcessor``` tests but that's not what I need to test here.  In this case I'm just interested in verifying that the flow of the create method works as expected.
@@ -124,7 +127,7 @@ A test double is a simplified object which takes the place of another object in 
           let(:attempt_card_payment) { double(:attempt_card_payment) }
           before do
             expect(attempt_card_payment).to receive(:processed).and_return(true)
-            ExternalPaymentProcessor.stub(:create_payment_process).and_return(attempt_card_payment) 
+            allow(ExternalPaymentProcessor).to receive(:create_payment_process).and_return(attempt_card_payment) 
           end
 
 As you can see, I have defined the double ```:attempt_card_payment``` and also asserted that I want ```:processed``` to return true for this test because I am testing valid card details.  Lastly I also want to stub the ```create_payment_process``` on ```ExternalPaymentProcessor``` to let it return whatever I like without ever hitting the external payment provider servers.  Stubbing is also really useful for TDD because it lets me specify the code I want to have without relying on code that’s already there.

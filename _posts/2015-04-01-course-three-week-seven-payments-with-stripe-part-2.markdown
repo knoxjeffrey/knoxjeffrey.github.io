@@ -19,29 +19,32 @@ I decided that Stripe was too tightly coupled with my application and that could
     def create
       @user = User.new(user_params)
       if @user.valid?
-        attempt_card_payment = payment_processor
+        attempt_card_payment = registration_payment_processor
         if attempt_card_payment.processed
           @user.save
           flash[:success] = "Thank you for registering, please sign in."
           redirect_to sign_in_path
         else
-          flash[:danger] = attempt_card_payment.error
-          redirect_to register_path
+          handle_create_error(attempt_card_payment.error)
         end
       else
-        flash[:danger] = "Please fix the errors in this form."
-        render :new
+        handle_create_error("Please fix the errors in this form.")
       end
     end 
     
     private
     
-    def payment_processor
+    def registration_payment_processor
       ExternalPaymentProcessor.create_payment_process(
         amount: 999,
         email: @user.email_address,
         token: params[:stripeToken]
       )
+    end
+    
+    def handle_create_error(error)
+      flash[:danger] = error
+      render :new
     end
     
 I now have a generic ```ExternalPaymentProcessor``` class that deals with all of the interaction for making payments which looks like this:
@@ -51,17 +54,17 @@ I now have a generic ```ExternalPaymentProcessor``` class that deals with all of
 
       attr_accessor :processed, :error
 
-      def initialize(options={})
-        @processed = options[:processed]
-        @error = options[:error]
-      end
-
       def self.create_payment_process(options={})
         response = payment_processor.new(options).process_card
         response == true ? new(processed: response) : new(error: response)
       end
 
       private
+
+      def initialize(options={})
+        @processed = options[:processed]
+        @error = options[:error]
+      end
 
       def self.payment_processor
         StripePaymentProcessor
