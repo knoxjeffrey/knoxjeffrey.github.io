@@ -51,6 +51,10 @@ I've created this page to make note of anything I come across that I've found us
 
   I used this the specifically migrate my test database when it would work automatically with ```rake db:migrate```
   
+- precompile assets
+
+  When I was uploading to heroku my css and js didn't always work.  Type this from the terminal ```bundle exec rake assets:precompile``` and then push to heroku
+  
 ###RSpec
 
 - If you only need to run one of your tests in a file rather than all of them you can do this like so:
