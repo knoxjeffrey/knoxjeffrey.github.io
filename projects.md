@@ -55,6 +55,8 @@ This is my project for the third Tealeaf Academy course and is basicaly a Nexfli
 - Add videos to queue
 - Write video reviews
 
+Note, when signing up do not use your real card information as this is just a test application for the Tealeaf Academy courset!  You can use the Stripe test card info with card number 4242424242424242 and any 3 digit security code.
+
 ###[Ruby On Rails: Time Off Tokens](http://www.timeofftokens.com "Time Off Tokens")
 This is my personal project for the third Tealeaf Academy course and I came up with an idea that would be very useful for my wife and I.  We have 2 children and our parents live far away so we find having some time to ourselves is a bit of a challenge.  We have several friends in the same position and we have created a babysitting circle so we each babysit for one another.  Many people do the same thing and use a token system to ensure that everyone does their fair share of babysitting.  You earn tokens for every hour that you babysit and are deducted tokens for every hour that someone babysits for your children.
 
