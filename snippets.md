@@ -53,7 +53,9 @@ I've created this page to make note of anything I come across that I've found us
   
 - precompile assets
 
-  When I was uploading to heroku my css and js didn't always work.  Type this from the terminal ```bundle exec rake assets:precompile``` and then push to heroku
+  First clear your assets: ```production rake assets:clobber```
+  
+  Then precompile the assets:```bundle exec rake assets:precompile```
   
 ###RSpec
 
