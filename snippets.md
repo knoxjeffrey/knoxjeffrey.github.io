@@ -53,9 +53,9 @@ I've created this page to make note of anything I come across that I've found us
   
 - precompile assets
 
-  First clear your assets: ```production rake assets:clobber```
+  First clear your assets: ```RAILS_ENV=production rake assets:clobber```
   
-  Then precompile the assets:```bundle exec rake assets:precompile```
+  Then precompile the assets:```RAILS_ENV=production bundle exec rake assets:precompile```
   
 ###RSpec
 
