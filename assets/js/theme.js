@@ -777,6 +777,7 @@ jQuery(document).ready(function(){
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 		ga('create', config.analytics_id, config.analytics_domain);
 		ga('send', 'pageview');
+        setTimeout("ga('send', 'event', 'read', '10 seconds')",10000);
 	}
   
 	// READING TIME
