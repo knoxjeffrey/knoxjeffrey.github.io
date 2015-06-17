@@ -76,6 +76,10 @@ I've created this page to make note of anything I come across that I've found us
   Save a screenshot: ```page.save_screenshot('screenshot.png')```
   
   Save and open screenshot: ```save_and_open_screenshot```
+  
+- Turn off jQuery animations for testing
+
+  ```$.fx.off```
 
 ###Terminal
 
@@ -88,3 +92,5 @@ I've created this page to make note of anything I come across that I've found us
   ```kill -9 PID```
   
   replacing PID with the PID of the process you want to kill.
+  
+
