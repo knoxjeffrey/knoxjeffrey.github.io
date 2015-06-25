@@ -93,4 +93,8 @@ I've created this page to make note of anything I come across that I've found us
   
   replacing PID with the PID of the process you want to kill.
   
+- Python's SimpleHTTPServer
+
+  Python's SimpleHTTPServer is an incredibly simple way to start a server in a directory on your computer. If you're on a Mac, you can navigate to the directory in terminal, then run ```python -m SimpleHTTPServer```. You can then access the HTML page you've created by visiting localhost:8000 in your browser.
+  
 
