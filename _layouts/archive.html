@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+<section class="posts postindex wrapper">
+  {% for post in site.posts %}
+    {% capture month %}{{ post.date | date: '%m%Y' }}{% endcapture %}
+    {% capture nmonth %}{{ post.next.date | date: '%m%Y' }}{% endcapture %}
+      {% if month != nmonth %}
+        {% if forloop.index != 1 %}</ul>{% endif %}
+        <h3 class="sub-header">{{ post.date | date: '%B %Y' }}</h3><ul>
+      {% endif %}
+      <h4><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h4>
+      <span>
+          Posted on <i class="fa fa-clock-o"></i><time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date: "%B %-d, %Y" }}</time>.
+      </span>
+  {% endfor %}
+
+</section>
+
+<div class="profile">
+	{% if site.logourl != "" %}<img src="{{ site.logourl }}" class="profileimage" alt="user">{% endif %}
+	<h4>{{ site.title }}</h4>
+	<p>{{ site.description }}</p>
+	<hr>
+</div>
