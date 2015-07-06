@@ -76,5 +76,5 @@ I wanted to make it as easy as possible to administer the tokens and have a simp
 
 I'm releasing this as my first proper production application and with any luck I'll get lots of people signing up!
 
-###[Javascript and jQuery: Todo-My-MVC](http://development.todo-my-mvc.divshot.io/ "Todo-My-MVC)
+###[Javascript and jQuery: Todo-My-MVC](http://development.todo-my-mvc.divshot.io/ "Todo-My-MVC")
 For the final part of the Front End Foundations course from Tealeaf Academy we build our own simple MVC framework and developed a utility library.  I wanted to play with the framework a bit more so I used it in conjunction with the HTML and CSS from the [TodoMVC](http://todomvc.com/) website.  Using my own framework and utility library I built a working version of the simple Todo list.
