@@ -63,6 +63,11 @@
 	}
 
 	@include transition(all 0.2s ease-in-out);
+    
+    &.linkedin:hover{
+		background:#0e76a8;
+		color:#fff;
+	}
 
 	&.twitter:hover{
 		background:#00acee;
@@ -86,6 +91,31 @@
 
 	&.rss:hover{
 		background:#ee802f;
+		color:#fff;
+	}
+
+}
+
+.smallcontactbutton{
+
+	margin:5px 3px;
+	display:inline-block;
+	width:32px;
+	height:28px;
+    font-size:20px;
+	text-align:center;
+	background:#C91F2C;
+	color:#fff;
+	@include border-radius(36px, 36px);
+
+	i{
+		vertical-align: -1px;
+		position:relative;
+	}
+
+	@include transition(all 0.2s ease-in-out);
+    
+    &.contact:hover{
 		color:#fff;
 	}
 

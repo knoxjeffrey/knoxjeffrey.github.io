@@ -13,6 +13,9 @@ layout: default
     {% if site.author_image != "" %}<img src="{{ site.author_image }}" class="profileimage" alt="user">{% endif %}
     <h4>{{ site.author_name }}</h4>
     <ul>
+        {% if site.linkedin_url != '' %}
+        <li><a href="{{ site.linkedin_url }}" class="smallsocialbutton linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        {% endif %}
     	{% if site.twitter_url != '' %}
         <li><a href="{{ site.twitter_url }}" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
         {% endif %}

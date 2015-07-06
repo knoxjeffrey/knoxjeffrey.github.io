@@ -3,6 +3,7 @@
 # Site Settings
 title: 						"Jeff Knox Blog"
 email: 						"knoxjeffrey@outlook.com"
+phone:                      "07775682459"
 description: 				"Web development thoughts, knowledge and ideas"
 baseurl: 					""
 url: 						"http://knoxjeffrey.github.io"
