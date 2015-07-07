@@ -134,12 +134,12 @@ input:not([type=submit]):not([type=file]):active, input:not([type=submit]):not([
 	span{
 		display:inline-block;
 		margin-left:15px;
-		@media screen and (max-width: 1140px) {
+		/* @media screen and (max-width: 1140px) {
 			display:none;
 		}
 		@media screen and (max-width: 595px) {
 			display:inline-block;
-		}
+		} */
 	}
 	i{
 		font-size: 1.533333em;
@@ -151,7 +151,7 @@ input:not([type=submit]):not([type=file]):active, input:not([type=submit]):not([
 	@media screen and (max-width: 906px) {
 		position:absolute;
 		left:5%;
-		top:30px;
+		top:35px;
 		position:absolute;
 		margin-top:30px;
 		display:inline-block;
