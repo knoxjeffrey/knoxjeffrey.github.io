@@ -15,7 +15,7 @@ paginate: 					5
 # Author Settings
 author_name: 				"Jeff Knox"
 author_url: 				"https://github.com/knoxjeffrey"
-author_bio: 				"Ruby and Ruby on Rails developer based in Edinburgh, UK."
+author_bio: 				"Ruby on Rails developer based in Edinburgh, UK."
 author_image: 				"/assets/img/authorimage.jpg"
 
 

@@ -36,15 +36,16 @@ layout: default
 </div>
 
 <section class="posts postindex wrapper">
+  <h2>Summary</h2>
   
-  <div class="triangle-border">
-    <h2>Summary</h2>
+  <div class="triangle-border top">
     <p>I have a degree in Computer and Management Science but upon finishing I had an opportunity to work with a new medical device for improving spinal biomechanics. I re-trained and ran my own clinic for 11 years and combined that with research work.</p>
 
     <p>I sold the clinic in February 2015 but had been working with several technologies and programming languages for a year at that point. My main foucs has been building web applications with Ruby on Rails as well as building front end interfaces with HTML, CSS, Javascript and jQuery.</p>
   </div>
   
-  <h2>Projects - <a href="../projects">More Details On Below Projects</a></h2>
+  
+  <h2>Projects</h2>
   
   <ul class="cbp_tmtimeline">
 	<li>
@@ -102,7 +103,7 @@ layout: default
 	</li>
     
     <li>
-      <time class="cbp_tmtime"><span>2015</span> <span>Dec</span></time>
+      <time class="cbp_tmtime"><span>2014</span> <span>Dec</span></time>
       <div class="cbp_tmicon"><i class="fa fa-desktop"></i></div>
       <div class="cbp_tmlabel">
         <h2>Blackjack World</h2>
@@ -111,13 +112,72 @@ layout: default
 	</li>
     
     <li>
-      <time class="cbp_tmtime"><span>2015</span> <span>Nov</span></time>
+      <time class="cbp_tmtime"><span>2014</span> <span>Nov</span></time>
       <div class="cbp_tmicon"><i class="fa fa-desktop"></i></div>
       <div class="cbp_tmlabel">
         <h2>Scottish Health Inequality</h2>
-        <p>I wanted to gain experience with creating data visualisations based on data sets and chose D3 to display health inequality in Scotland: <a href="http://scottish-health-inequality.herokuapp.com/">Scottish Health Inequality</a></p>
+        <p>I wanted to gain experience with creating data visualisations based on data sets and decided upon D3.js to display health inequality in Scotland: <a href="http://scottish-health-inequality.herokuapp.com/">Scottish Health Inequality</a></p>
       </div>
 	</li>
-</ul>
+  </ul>
   
+  <br>
+  
+  <h2>Hobbies And Interests</h2>
+  
+  <ul id="interests">
+    <li><img src="../assets/img/bike.png" />Mountain Biking</li>
+    <li><img src="../assets/img/racingflags.png" />Formula 1</li>
+    <li><img src="../assets/img/snow-flake.png" />Skiing</li>
+    <li><img src="../assets/img/bookshelf.png" />Research</li>
+    <li><img src="../assets/img/volume.png" />Music</li>
+  </ul>
+  
+  <br>
+  
+  <div class="postprofile">
+      <img src="{{ site.author_image }}" class="author" alt="user">
+      <div class="info">
+        <h4>{{ site.author_name }}</h4>
+        <p>{{ site.author_bio }}</p>
+        <ul class="social">
+          {% if site.twitter_url != '' %}
+          <li><a href="{{ site.twitter_url }}" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+          {% endif %}
+          {% if site.facebook_url != '' %}
+          <li><a href="{{ site.facebook_url }}" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
+          {% endif %}
+          {% if site.github_url != '' %}
+          <li><a href="{{ site.github_url }}" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+          {% endif %}
+          {% if site.youtube_url != '' %}
+          <li><a href="{{ site.youtube_url }}" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>
+          {% endif %}
+          {% if site.dribbble_url != '' %}
+          <li><a href="{{ site.dribbble_url }}" class="dribbble" target="_blank"><i class="fa fa-dribbble"></i></a></li>
+          {% endif %}
+          {% if site.googleplus_url != '' %}
+          <li><a href="{{ site.googleplus_url }}" class="googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+          {% endif %}
+          {% if site.instagram_url != '' %}
+          <li><a href="{{ site.instagram_url }}" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>
+          {% endif %}
+          {% if site.pinterest_url != '' %}
+          <li><a href="{{ site.pinterest_url }}" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+          {% endif %}
+          {% if site.linkedin_url != '' %}
+          <li><a href="{{ site.linkedin_url }}" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+          {% endif %}
+          <li><a href="{{ site.url }}/feed.xml" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+        </ul>
+        <ul class="social">
+          {% if site.phone != '' %}
+            <li><a class="contact"><i class="fa fa-phone"></i></a><span class="contact-details"> 07775682459</span></li>
+          {% endif %}
+          {% if site.email != '' %}
+            <li><a class="contact"><i class="fa fa-envelope-o"></i></a><span class="contact-details"> knoxjeffrey@outlook.com</span></li>
+          {% endif %}
+      </ul>
+      </div>
+  </div>
 </section>
