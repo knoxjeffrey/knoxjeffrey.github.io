@@ -10,3 +10,11 @@
         {% endfor %}
     </ul>
 </nav>
+
+<div class="nav-header-small">
+  <div class="smallnav">
+    {% for page in site.pages %}
+        {% if page.title %}<a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a> &bull;{% endif %}
+      {% endfor %}
+  </div>
+</div>

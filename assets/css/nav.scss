@@ -79,3 +79,41 @@ nav{
 	}
 
 }
+
+.nav-header-small{
+  position:absolute;
+  width: 100%;
+	z-index:400;
+	padding:25px 0;
+	text-align:center;
+	font:100 24px 'Open Sans', Serif;
+	color:#a6a6a6;
+
+	span{
+		display:block;
+	}
+
+	a{
+		color:#5498dc;
+	}
+
+	.smallnav{
+		display:none;
+    
+		@media screen and (max-width: 906px) {
+			display:block;
+      font:100 18px 'Open Sans', Serif;
+		}
+    
+    @media screen and (max-width: 667px) {
+			display:block;
+      font:100 16px 'Open Sans', Serif;
+		}
+    
+    @media screen and (max-width: 480px) {
+			display:block;
+      font:100 12px 'Open Sans', Serif;
+		}
+	}
+
+}
