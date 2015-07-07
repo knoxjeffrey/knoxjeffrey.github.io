@@ -1,7 +1,3 @@
-.profile ul li .contact-details {
-  font-size: 13px;
-}
-
 /* ============================================================================================================================
 == BUBBLE WITH A BORDER AND TRIANGLE
 ** ============================================================================================================================ */
@@ -320,6 +316,23 @@
 	}	
 }
 
+/* ============================================================================================================================
+== GENERAL
+** ============================================================================================================================ */
+
+.profile ul li .contact-details {
+  font-size: 13px;
+}
+
+.postprofile li a[href^=tel] {
+  color:inherit;
+  text-decoration:none;
+}
+
+.liquidFillGaugeText { 
+  font-family: Helvetica; 
+  font-weight: bold; 
+}
 
 #interests {   
   text-align: justify;
@@ -327,7 +340,7 @@
 }
 
 #interests > li {
-  width: 100px; /* Declare your value. Can be in relative units. */
+  width: 80px; /* Declare your value. Can be in relative units. */
   display: inline-block;
   vertical-align: top;
   text-align: center;
@@ -345,5 +358,42 @@
 
 #interests img {   
   margin: 10px 0;
+}
+
+#skills {   
+  text-align: justify;
+  padding: 0;
+}
+
+#skills > li {
+  width: 130px; /* Declare your value. Can be in relative units. */
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  margin-top: 15px;
+
+  /* IE fix. */
+  *display: inline;
+  zoom: 1;
+}
+
+#skills:after {
+  content: "";
+  width: 100%;
+  display: inline-block;
+}
+
+@media screen and (max-width: 800px) {
+
+  #skills > li {
+    width: 180px; /* Declare your value. Can be in relative units. */
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  #skills > li {
+    width: 120px; /* Declare your value. Can be in relative units. */
+  }
 }
 

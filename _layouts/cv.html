@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: cv_default
 ---
 
 <div class="profile {% if page.featured == true %} featured {% endif %}">
@@ -123,13 +123,28 @@ layout: default
   
   <br>
   
+  <h2>Skills Summary</h2>
+  
+  <ul id="skills">
+    <li><svg id="fillgauge1" width="100%"></svg>Ruby</li>
+    <li><svg id="fillgauge2" width="100%"></svg>Ruby on Rails</li>
+    <li><svg id="fillgauge3" width="100%"></svg>HTML</li>
+    <li><svg id="fillgauge4" width="100%"></svg>CSS</li>
+    <li><svg id="fillgauge5" width="100%"></svg>Javascript</li>
+    <li><svg id="fillgauge6" width="100%"></svg>jQuery</li>
+    <li><svg id="fillgauge7" width="100%"></svg>Responsive Design</li>
+    <li><svg id="fillgauge8" width="100%"></svg>GitHub</li>
+    <li><svg id="fillgauge9" width="100%"></svg>Heroku</li>
+  </ul>
+  
+  <br>
+  
   <h2>Hobbies And Interests</h2>
   
   <ul id="interests">
     <li><img src="../assets/img/bike.png" />Mountain Biking</li>
     <li><img src="../assets/img/racingflags.png" />Formula 1</li>
     <li><img src="../assets/img/snow-flake.png" />Skiing</li>
-    <li><img src="../assets/img/bookshelf.png" />Research</li>
     <li><img src="../assets/img/volume.png" />Music</li>
   </ul>
   
@@ -171,11 +186,12 @@ layout: default
           <li><a href="{{ site.url }}/feed.xml" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>
         </ul>
         <ul class="social">
-          <li><a class="contact"><i class="fa fa-phone"></i></a><span class="contact-details"> 07775682459</span></li>
+          <li><a class="contact"><i class="fa fa-phone"></i></a><span class="contact-details"> <a href="tel:07775682459">07775682459</a></span></li>
         </ul>
         <ul class="social">
           <li><a class="contact"><i class="fa fa-envelope-o"></i></a><span class="contact-details"> knoxjeffrey@outlook.com</span></li>
       </ul>
       </div>
   </div>
+
 </section>
