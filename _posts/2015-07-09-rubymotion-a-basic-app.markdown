@@ -124,4 +124,6 @@ You can see that I am overriding initWithFrame to add subviews to my main view. 
 
 That's all there is to this simple app and now you are ready to compile check out your work!  To do this simply run ```rake``` from the terminal.  This will run your app in the simulator.  You can also declare the device you would like to use in the simulator with the command ```rake device_name="iPhone 6 Plus"```.  If you have a developer license you can also run the app on your device with the command ```rake device```.  
 
+One last thing that will come in handy is the ability to make changes to the app on the fly.  As a simple example, hold down the cmd key and click on the "Hello Rubymotion!" text.  You will see ```UILabel``` appear in the command line and you can simply type ```self.text = "I've changed it!"``` and the text will change on the app. Nice!
+
 I hope this has been a useful tutorial and I'd be happy to hear your feedback.
