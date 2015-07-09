@@ -81,7 +81,10 @@ I am going to follow the Rails file structure and create a new directory for con
 
       def loadView
         self.view = MainView.alloc.initWithFrame(CGRectZero)
-        self.title = 'hello_motion'
+      end
+      
+      def viewDidLoad
+        self.title = 'Hello'
       end
 
     end

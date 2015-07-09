@@ -85,6 +85,9 @@ The first thing to notice is that I create getter and setter methods for delegat
         end
 
         self.view = @main_view
+      end
+      
+      def viewDidLoad
         self.title = 'Hello'
       end
 
