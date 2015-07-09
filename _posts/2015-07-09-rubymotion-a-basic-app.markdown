@@ -81,7 +81,6 @@ I am going to follow the Rails file structure and create a new directory for con
 
       def loadView
         self.view = MainView.alloc.initWithFrame(CGRectZero)
-        self.view.backgroundColor = UIColor.whiteColor
         self.title = 'hello_motion'
       end
 
@@ -96,6 +95,7 @@ A view controller will call the ```loadView``` method automtically when its view
       def initWithFrame(frame) 
 
         super.tap do 
+          self.backgroundColor = UIColor.whiteColor
           addSubview(label)
           addSubview(red_square)
         end
