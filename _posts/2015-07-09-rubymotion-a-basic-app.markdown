@@ -73,7 +73,7 @@ Rather than have all the code in a single long method (remember the rules by [Sa
 
 In this code I have simply set ```navigation_controller``` as the ```rootViewController``` of the window.  The window manages and coordinates the views that an app displays on the device screen and the rootViewController is the main point of navigation for the interface.  All applications are expected to have a root view controller at the end of application lauch.
 
-```navigation_controller``` then instantiates ```main_view_controller``` that is used to control what appears on this initial screen and can handle any user inputs.  In this case the view controller will have an easy time of it as all it has to do is load the view.
+```navigation_controller``` then instantiates ```main_view_controller``` that is used to control what appears on this initial screen and can also handle user inputs/interactions as well as coordinate with data models or other view controllers.  In this case the view controller will have an easy time of it as all it has to do is load the view.
 
 I am going to follow the Rails file structure and create a new directory for controller files in ```app/controllers/main_view_controller``` that will hold the class ```MainViewController``` and will look as follows:
 
