@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "RubyMotion - IB Gem"
-date:   2015-07-10 19:302:00
+date:   2015-07-10 19:30:00
 categories: RubyMotion
 banner_image: ""
 featured: false
