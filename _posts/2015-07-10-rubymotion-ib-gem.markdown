@@ -12,7 +12,7 @@ In todays post I'm going to walk through using the interface builder in Xcode ba
 
 <!--more-->
 
-First up, create a new project with ```motion create interface_builder``` and then go to the Gemfile and add the following line ```gem 'ib'```. Then run ```bundle``` from the command line and wait for the gem to be installed.
+First up, create a new project with the command ```motion create interface_builder``` and then go to the Gemfile and add the following line ```gem 'ib'```. Then run ```bundle``` from the command line and wait for the gem to be installed.
 
 With that done it's time to create a new UIViewController called MasterViewController and here is my completed code for that class:
 
