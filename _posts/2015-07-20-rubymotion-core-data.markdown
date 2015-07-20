@@ -43,6 +43,8 @@ Then run the command ```cdq init``` which creates a schemea folder to hold the i
     
 Then run the command ```rake schema:build``` to build the data model which you will see in the resources folder with extension ```.xcdatamodeld```.
 
+One other thing to not about ```cdq init``` is that it adds ```task :"build:simulator" => :"schema:build"``` to the bottom of your Rakefile to ensure the schema is up to date.  However, this only works for the simulator.  If you are building for your device you will have to run ```rake "schema:build"``` first.
+
 Then create the model classes:
 
     cdq create model person
