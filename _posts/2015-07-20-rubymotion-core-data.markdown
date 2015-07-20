@@ -44,7 +44,9 @@ Then run the command ```cdq init``` which creates a schemea folder to hold the i
 Then run the command ```rake schema:build``` to build the data model which you will see in the resources folder with extension ```.xcdatamodeld```.
 
 Then create the model classes:
+
     cdq create model person
+    
     cdq create model post
 
 You will now have a model folder with the ```person.rb``` and ```post.rb``` files that have a basic class structure inheriting from ```CDQManagedObject```. Here is the post class for example:
