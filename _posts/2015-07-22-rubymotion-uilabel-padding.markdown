@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "RubyMotion - UIlabel Padding"
+title:  "RubyMotion - UILabel Padding"
 date:   2015-07-22 16:18:00
 categories: RubyMotion
 banner_image: ""
