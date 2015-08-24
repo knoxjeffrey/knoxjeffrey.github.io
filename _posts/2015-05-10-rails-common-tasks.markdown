@@ -8,7 +8,7 @@ featured: false
 comments: true
 ---
 
-This won't be the most ground breaking of posts but I wanted to note down a lot of the common tasks I perform in the making of a rails application so I have a single point of reference
+This won't be the most ground breaking of posts but I wanted to note down a lot of the common tasks I perform in the making of a rails application so I have a single point of reference.
 
 <!--more-->
 
