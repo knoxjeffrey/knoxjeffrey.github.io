@@ -127,7 +127,7 @@ As mentioned earlier, I now need to do some CORS setup to allow other applicatio
 
 The above will allow GET, POST, DELETE, PUT or OPTIONS requests from any origin on any resource.  I'll tweak the origins to be more selective at a later date as seen [here for example](http://www.rubydoc.info/gems/rack-cors/0.2.9).
 
-I also have to add ```config.middleware.use ActionDispatch::Flash``` so I can visit the oauth paths (check out http://localhost:3000/rails/info/routes when you run oyur server) because the rails-api gem has stripped out a lot of the Rails middleware and I get an ```unidentified method 'flash'``` error message.
+I also have to add ```config.middleware.use ActionDispatch::Flash``` so I can visit the oauth paths (check out http://localhost:3000/rails/info/routes when you run your server) because the rails-api gem has stripped out a lot of the Rails middleware and I would get an ```unidentified method 'flash'``` error message.
 
 I also have to set some HTTP headers to enable CORS which I have done globally in ApplicationController:
 
