@@ -283,7 +283,7 @@ Lastly I need to setup my route, again with the necessary namespacing:
 
     end
     
-In order to test this I will again use Postman, this time with a GET request to ```http://localhost:3000/api/v1/users/sync``` but also with the token added to the Headers. In Postman you enter ```Authorization``` for the Header and ```Bearer fe087c17dd15a84b3c939fbbbd1bbfd196d7ea28cfafbf1d6f15a6c74822ef30``` for the Value (obviously changing the token for the use you want to test for).  If all goes well then the response body§ will look something like the following:
+In order to test this I will again use Postman, this time with a GET request to ```http://localhost:3000/api/v1/users/sync``` but also with the token added to the Headers. In Postman you enter ```Authorization``` for the Header and ```Bearer fe087c17dd15a84b3c939fbbbd1bbfd196d7ea28cfafbf1d6f15a6c74822ef30``` for the Value (obviously changing the token for the use you want to test for).  If all goes well then the response body will look something like the following:
 
     {
       "id": 1,
