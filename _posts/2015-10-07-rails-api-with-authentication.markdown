@@ -314,4 +314,6 @@ In order to test this I will again use Postman, this time with a GET request to 
       "full_name": "Jeff Knox"
     }
     
+You can also check this out from the browser by simply typing ```http://localhost:3000/api/v1/users/sync?access_token=fe087c17dd15a84b3c939fbbbd1bbfd196d7ea28cfafbf1d6f15a6c74822ef30``` and you will see the json response.
+    
 Excellent, I've got the basics of a working API and that's as far as I have gone so far.  A lot of the concepts in this very pretty foreign to me so I had to do quite a bit of reading to better understand it.  I'd really appreciate any feedback to let me know if I've made any glaring errors and especially some help with the CSRF issue I mentioned earlier.
