@@ -390,4 +390,4 @@ My spec for this at ```lib/spec/api_constraints_spec.rb``` is almost exactly the
       end
     end
 
-Excellent, now you can drop the ```api/v1``` from the URL.  As you add new versions just set the latest to be the deafult and therefore if people want to use an older version then they need to set the Accept Header to include the version.  I'd also suggest having the latest version at the top of the routes because this is going to be the most used.  If it's at the bottom then all the others will have to be checked first to see if they are the default.
+Excellent, now you can drop the ```api/v1``` from the URL.  As you add new versions just set the latest to be the deafult and therefore if people want to use an older version then they need to set the Accept Header to include the version.  Also remember to keep the default version at the end of the list of versions.  If you have it at the top then it will automatically use that and not check the headers for the request to use an older version.
