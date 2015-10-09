@@ -317,3 +317,77 @@ In order to test this I will again use Postman, this time with a GET request to 
 You can also check this out from the browser by simply typing ```http://localhost:3000/api/v1/users/sync?access_token=fe087c17dd15a84b3c939fbbbd1bbfd196d7ea28cfafbf1d6f15a6c74822ef30``` and you will see the json response.
     
 Excellent, I've got the basics of a working API and that's as far as I have gone so far.  A lot of the concepts in this very pretty foreign to me so I had to do quite a bit of reading to better understand it.  I'd really appreciate any feedback to let me know if I've made any glaring errors and especially some help with the CSRF issue I mentioned earlier.
+
+# Extra Stuff!
+
+I just wanted to add a bit extra to this to improve my versioning after I read [this resource by Abraham Kuri Vargas](http://apionrails.icalialabs.com/book/chapter_two).  Read this article before continuing so you understand what I'm about to write.  
+
+He suggested that a way to remove the ```api/v1``` from the URL by using routing constraints and accept headers.
+
+My ```routes.rb``` file will now look as follows:
+
+    Rails.application.routes.draw do
+      use_doorkeeper
+
+      devise_for :users,
+      only: :registrations,
+      controllers: {
+        registrations: 'users/registrations'
+      }
+
+      namespace :api, defaults: { format: :json }, path: '/' do
+
+        scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+
+          get 'users/sync', to: 'users#sync'
+
+        end
+
+      end
+
+    end
+
+Using ```path: '/'``` removes the need to use ```api``` in the url.  ```v1``` uses a constraint to check if a version has been added in the Accept Header by using the class ```ApiConstraints``` at ```lib/api_constraints.rb```:
+
+    class ApiConstraints
+      def initialize(options)
+        @version = options[:version]
+        @default = options[:default]
+      end
+
+      # This is a method of constraints as used in routes.rb and requires a 'true' result
+      # to follow the route. If false, it moves on through the routes until true
+      # True will result from either default being specified in routes or if the request header, 
+      # Accept, contains the string in this method.
+      # the client.
+      def matches?(req)
+        @default || req.headers['Accept'].include?("application/vnd.marketplace.v#{@version}")
+      end
+    end
+
+I've added some documentation to the ```matches?``` method so you better understand how it works because I needed to do a bit of reading up on it.
+
+My spec for this at ```lib/spec/api_constraints_spec.rb``` is almost exactly the same at what was in the article, just some changes to the host and changing from using should to expect:
+
+    require 'rails_helper'
+
+    describe ApiConstraints do
+      let(:api_constraints_v1) { ApiConstraints.new(version: 1) }
+      let(:api_constraints_v2) { ApiConstraints.new(version: 2, default: true) }
+
+      describe "matches?" do
+
+        it "returns true when the version matches the 'Accept' header" do
+          request = double(host: 'http://localhost:3000',
+                           headers: {"Accept" => "application/vnd.marketplace.v1"})
+          expect(api_constraints_v1.matches?(request)).to be true
+        end
+
+        it "returns the default version when 'default' option is specified" do
+          request = double(host: 'http://localhost:3000')
+          expect(api_constraints_v2.matches?(request)).to be true
+        end
+      end
+    end
+
+Excellent, now you can drop the ```api/v1``` from the URL.  As you add new versions just set the latest to be the deafult and therefore if people want to use an older version then they need to set the Accept Header to include the version.  I'd also suggest having the latest version at the top of the routes because this is going to be the most used.  If it's at the bottom then all the others will have to be checked first to see if they are the default.
