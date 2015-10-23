@@ -24,13 +24,13 @@ config2.waveColor = red_wave_color;
 config2.circleThickness = circle_thickness;
 config2.textVertPosition = 0.75;
 config2.waveAnimateTime = wave_animate_time;
-loadLiquidFillGauge("fillgauge2", 70, config2);
+loadLiquidFillGauge("fillgauge2", 75, config2);
 
 var config3 = liquidFillGaugeDefaultSettings();
 config3.circleThickness = circle_thickness;
 config3.textVertPosition = 0.7;
 config3.waveAnimateTime = wave_animate_time;
-loadLiquidFillGauge("fillgauge3", 65, config3);
+loadLiquidFillGauge("fillgauge3", 70, config3);
 
 var config4 = liquidFillGaugeDefaultSettings();
 config4.circleThickness = circle_thickness;
@@ -52,18 +52,24 @@ loadLiquidFillGauge("fillgauge6", 55, config6);
 
 var config7 = liquidFillGaugeDefaultSettings();
 config7.circleThickness = circle_thickness;
-config7.textVertPosition = 0.87;
+config7.textVertPosition = 0.57;
 config7.waveAnimateTime = wave_animate_time;
-loadLiquidFillGauge("fillgauge7", 80, config7);
+loadLiquidFillGauge("fillgauge7", 45, config7);
 
 var config8 = liquidFillGaugeDefaultSettings();
 config8.circleThickness = circle_thickness;
-config8.textVertPosition = 0.75;
+config8.textVertPosition = 0.87;
 config8.waveAnimateTime = wave_animate_time;
-loadLiquidFillGauge("fillgauge8", 70, config8);
+loadLiquidFillGauge("fillgauge8", 80, config8);
 
 var config9 = liquidFillGaugeDefaultSettings();
 config9.circleThickness = circle_thickness;
 config9.textVertPosition = 0.75;
 config9.waveAnimateTime = wave_animate_time;
 loadLiquidFillGauge("fillgauge9", 70, config9);
+
+var config10 = liquidFillGaugeDefaultSettings();
+config10.circleThickness = circle_thickness;
+config10.textVertPosition = 0.75;
+config10.waveAnimateTime = wave_animate_time;
+loadLiquidFillGauge("fillgauge10", 70, config10);
