@@ -21,6 +21,30 @@ When kicking off work on a rails project you'll either be starting completely fr
     gem install rails
     rails new myproject
     
+I like to work with PostgreSQL as my database because this is what I tend to work with in production and it's always a good idea to build your application using the same datbase in development as you would in production.  This could be setup with the command: ```rails new myproject --database=postgresq
+
+If you haven't worked with PostgreSQl before then [this is a handy resourse to follow to get it setup on your machine](http://www.gotealeaf.com/blog/how-to-install-postgresql-on-a-mac).
+
+Next up change the file at ```config/database.yml``` to look something like this:
+
+    development:
+      adapter: postgresql
+      encoding: unicode
+      database: myproject_development
+      pool: 5
+      username: knoxjeffrey
+      password:
+
+    test:
+      adapter: postgresql
+      encoding: unicode
+      database: myproject_test
+      pool: 5
+      username: knoxjeffrey
+      password:
+
+From the command line run ```rake db:create:all``` to create the development and test databases.
+
 The other option is to fork an existing project.  Navigate to the project you wish to fork in GitHub and click "Fork" in the top right corner and choose where you wish to fork it.  That's it, you have a remote copy but of course you'll want to create a local copy.
 
 In your newly forked repository click the button on the right of the page to copy the address to clone your repo.  In the terminal navigate to where you want the repo to be stored locally and enter the following:
