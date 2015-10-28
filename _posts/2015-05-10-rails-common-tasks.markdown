@@ -23,7 +23,7 @@ When kicking off work on a rails project you'll either be starting completely fr
     
 I like to work with PostgreSQL as my database because this is what I tend to work with in production and it's always a good idea to build your application using the same datbase in development as you would in production.  This could be setup with the command: ```rails new myproject --database=postgresq
 
-If you haven't worked with PostgreSQl before then [this is a handy resourse to follow to get it setup on your machine](http://www.gotealeaf.com/blog/how-to-install-postgresql-on-a-mac).
+If you haven't worked with PostgreSQl before then [this is a handy resourse to follow to get it setup on your machine](http://www.gotealeaf.com/blog/how-to-install-postgresql-on-a-mac){:target="_blank"}.
 
 Next up change the file at ```config/database.yml``` to look something like this:
 
