@@ -7,7 +7,7 @@ phone:                      "07775682459"
 description: 				"Web development thoughts, knowledge and ideas"
 baseurl: 					""
 url: 						"http://knoxjeffrey.github.io"
-logourl: 					"/assets/img/bloglogo.jpg"		
+logourl: 					"/assets/img/bloglogo.jpg"
 fa-logo: 					"fa-bookmark-o"
 paginate: 					5
 
@@ -52,3 +52,6 @@ sass:
 markdown: 					kramdown
 permalink: 					pretty
 
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge

@@ -174,7 +174,8 @@ samp {
  */
 
 pre {
-    white-space: pre-wrap;
+    white-space: pre;
+    overflow-x: auto;
 }
 
 /**
@@ -241,8 +242,8 @@ svg:not(:root) {
  * Address margin not present in IE 8/9 and Safari 5.
  */
 
-figure {
-    margin: 1em 40px;
+figure, .highlighter-rouge{
+    margin: 1em 20px;
 }
 
 /* ==========================================================================
