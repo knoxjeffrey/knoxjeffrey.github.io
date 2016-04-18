@@ -73,7 +73,7 @@ production:
   mandrill_password: <%= ENV["MANDRILL_PASSWORD"] %>
   secret_token: <%= ENV['SECRET_TOKEN'] %>
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
-  ```
+```
 
 When all the environment variables are added you can press Apply and wait for the settings to take place.
 
