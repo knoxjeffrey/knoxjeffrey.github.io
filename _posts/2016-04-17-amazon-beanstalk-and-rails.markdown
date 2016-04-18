@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Amazon Beanstalk and Rails"
-date:   2016-04-18 23:00:00
+date:   2016-04-17 23:00:00
 categories: Rails
 banner_image: "/media/amazon_web_services.png"
 featured: true
