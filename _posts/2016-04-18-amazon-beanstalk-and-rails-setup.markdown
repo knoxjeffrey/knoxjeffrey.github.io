@@ -1,14 +1,14 @@
 ---
 layout: post
-title:  "Amazon Beanstalk and Rails"
-date:   2016-04-17 23:00:00
+title:  "Amazon Beanstalk and Rails Setup"
+date:   2016-04-18 23:30:00
 categories: Rails
 banner_image: "/media/amazon_web_services.png"
 featured: true
 comments: true
 ---
 
-I've recently had to setup an existing Ruby on Rails application to run on Amazon Beanstalk. The application uses a PostgreSQL database but also needed support for PostGIS which is a spatial database extender for a PostgreSQL object-relational database. It adds support for geographic objects allowing location queries to be run in SQL. It has taken me quite a while to get the application up and running so I thought it would be a good idea to document the whole process here to hopefully help others (and myself when I have to setup another application on Beanstalk!).
+I've recently had to setup an existing Ruby on Rails application to run on Amazon Beanstalk. The application uses a PostgreSQL database but also needed support for PostGIS which is a spatial database extender for a PostgreSQL object-relational database. It adds support for geographic objects allowing location queries to be run in SQL. It has taken me quite a while to get the application up and running so I thought it would be a good idea to document the whole process here to hopefully help others (and myself when I need to setup another application on Beanstalk!).
 
 I'm pretty much a total newbie to setting up servers so I'd really appreciate tips on how to automate the steps below to speed up the process.
 
