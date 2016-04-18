@@ -12,7 +12,7 @@ A lot of the information came from [this post](https://www.reddit.com/r/rails/co
 
 <!--more-->
 
-# Initial Setup
+## Initial Setup
 
 To build my API I'll be using the ```rails-api``` gem and my API also needs to store data for which I'll be using PostgreSQL.  If you don't have it already installed, type the following from the command line ```gem install rails-api``` and then ```rails-api new api_app_name --database=postgresql``` to setup your API.
 
@@ -55,7 +55,7 @@ config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
 In my case I also wanted to add a ```full_name``` column to the user model so ensure you run a migration if you need any additions to the model.  With that done all that is needed is to run ```rake db:migrate```.
 
-# Register and Sign In
+## Register and Sign In
 
 In order to register I will override the Devise registration with a controller that only works over JSON and accepts a create action.  An organised way of overriding Devise controllers is with the use of namespaces and therefore my controller will be at ```app/controllers/users/registrations_controller.rb```:
 
@@ -218,7 +218,7 @@ The ```resource_owner_from_credentials``` block checks the users email and passw
 
 Authorisation scopes are a way to determine to what extent the client can use resources located in the provider.  Default Scopes are the ones that are selected for authorisations that do not specify which scopes they need. In other words, if the client does not pass scope parameter in the authorisation URI then these are the scopes that they will get assigned. [See this resource for more information](https://github.com/doorkeeper-gem/doorkeeper/wiki/Using-Scopes).
 
-# Does it all work?
+## Does it all work?
 
 At this point I can run my server and I'll use Postman to test the end points.  First up is registering a new user for which I use a POST request to ```http://localhost:3000/users.json``` with the following JSON in the body:
 
@@ -257,7 +257,7 @@ Once again, all being well, you should see the something like the following resp
 
 and in the ```oauth_access_tokens``` table you will see a new record has been added.
 
-# API calls
+## API calls
 
 What I want to do next is to setup a controller that will manage all the rules for accessing my API at ```app/controllers/api_controller```:
 
@@ -345,7 +345,7 @@ You can also check this out from the browser by simply typing ```http://localhos
 
 Excellent, I've got the basics of a working API and that's as far as I have gone so far.  A lot of the concepts in this very pretty foreign to me so I had to do quite a bit of reading to better understand it.  I'd really appreciate any feedback to let me know if I've made any glaring errors and especially some help with the CSRF issue I mentioned earlier.
 
-# Extra Stuff!
+## Extra Stuff!
 
 I just wanted to add a bit extra to this to improve my versioning after I read [this resource by Abraham Kuri Vargas](http://apionrails.icalialabs.com/book/chapter_two).  Read this article before continuing so you understand what I'm about to write.  
 

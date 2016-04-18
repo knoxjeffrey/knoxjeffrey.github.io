@@ -8,7 +8,7 @@ featured: false
 comments: true
 ---
 
-In todays post I'm going to walk through using the interface builder in Xcode based on a tutorial by [MotioninMotion](https://motioninmotion.tv/screencasts/42).  I highly recommend signing up to the tutorials for this site as I've found them to be extremely helpful. 
+In todays post I'm going to walk through using the interface builder in Xcode based on a tutorial by [MotioninMotion](https://motioninmotion.tv/screencasts/42).  I highly recommend signing up to the tutorials for this site as I've found them to be extremely helpful.
 
 <!--more-->
 
@@ -16,30 +16,32 @@ First up, create a new project with the command ```motion create interface_build
 
 With that done it's time to create a new UIViewController called MasterViewController and here is my completed code for that class:
 
-    class MasterViewController < UIViewController
-  
-      extend IB
+``` ruby
+class MasterViewController < UIViewController
 
-        outlet :title_label, UILabel
-        outlet :text_field, UITextField
-        outlet :button, UIButton
+  extend IB
 
-        def button_pressed(sender)
-          title_label.text = text_field.text
-          text_field.text = ""
-        end
+    outlet :title_label, UILabel
+    outlet :text_field, UITextField
+    outlet :button, UIButton
 
-      end
-    
+    def button_pressed(sender)
+      title_label.text = text_field.text
+      text_field.text = ""
     end
-    
+
+  end
+
+end
+```
+
 You will see initially that I have added ```extend IB```.  You have no doubt used ```include``` before but you may have not seen ```extend``` so here's a quick explanation.  Include is for adding methods to an instance of a class and extend is for adding class methods as seen [here](http://www.railstips.org/blog/archives/2009/05/15/include-vs-extend-in-ruby/).
 
 Next there are 3 outlets. An outlet is basically a way to let interface builder know that it can assign a view to this property from the interface builder files that we create.  The object containing an outlet is often a custom controller object such as a view controller.
 
 When I get to the interface builder I will set the ```button_pressed``` action to the UIButton view.  This will simply change the text of ```title_label``` to be the text that is in the ```text_field``` and then clears the ```text_field```.
 
-##XCode
+## XCode
 
 Running ```rake ib``` will create a ib.xcodeproj in the root of your app and open XCode. You can create Storyboards or nibs, and save them in your resources directory in order to be picked up by RubyMotion.
 
@@ -53,7 +55,7 @@ Next up, go to the folder ```Resources/resources``` and right click to create a 
 
 Now you're ready to start using storyboards!
 
-##Storyboards
+## Storyboards
 
 Next up click the Object Library button at the bottom right of the screen and search for a View Controller and drag that onto your storyboard canvas.  Next up is a bit that got me a bit stuck.  At the bottom of the screen you will see selectors for width and height.  Make sure you set that to ```Any Any``` as this will give you the general settings for all devices.  You can then fine tune things if you like for specific devices.  This is a great addition to make it easy to quickly design for lots of different screeen sizes.
 
@@ -67,28 +69,30 @@ Press ctrl on the keyboard and then click on the label and drag the mouse to the
 
 Now open up the assistant editor and open the ```Stubs.h``` file. You can ctrl and drag from the UILabel on the storyboard to it's property in the Stubs.h file which connects the view to it's corresponding outlet. Do the same of the other and additionally drag from the button to the ```button_pressed```action.
 
-##AppDelegate
+## AppDelegate
 
 That's all for XCode and now back to the app delegte and my code looks as follows:
 
-    class AppDelegate
+``` ruby
+class AppDelegate
 
-      def window
-        @window ||= UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
-      end
+  def window
+    @window ||= UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+  end
 
-      def storyboard
-        @storyboard ||= UIStoryboard.storyboardWithName("Main", bundle: nil)
-      end
+  def storyboard
+    @storyboard ||= UIStoryboard.storyboardWithName("Main", bundle: nil)
+  end
 
-      def application(application, didFinishLaunchingWithOptions:launchOptions)
-        window.rootViewController = storyboard.instantiateInitialViewController
-        window.makeKeyAndVisible
+  def application(application, didFinishLaunchingWithOptions:launchOptions)
+    window.rootViewController = storyboard.instantiateInitialViewController
+    window.makeKeyAndVisible
 
-        true
-      end
-    end
-    
+    true
+  end
+end
+```
+
 Again I've tidied up my methods but the main thing to note is how I instantiate my storyboard and then set it as the root view controller.
 
 All that's let is to run ```rake``` from the terminal and check out the app. Try it on different screen sizes and rotate the screen to see how the view is always kept consistent.  
