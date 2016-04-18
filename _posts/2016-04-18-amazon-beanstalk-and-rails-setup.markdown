@@ -105,7 +105,7 @@ production:
   schema_search_path: public,postgis
 ```
 
-Note that if you decide to change your database password for example you and go into your environment variables in AWS and add a ```RDS_PASSWORD``` variable with the password you want.  You can change the password by going to Configuration from the dashboard.
+Note that if you decide to change your database password for example you need to go into your environment variables in AWS and add a ```RDS_PASSWORD``` variable with the password you want.  You can change the password by going to Configuration from the dashboard.
 
 When all the settings have been applied, go back to the terminal and type ```eb deploy```.  Note, you can add your environment name after the ```eb deploy``` if you have a few environements setup. 
 
