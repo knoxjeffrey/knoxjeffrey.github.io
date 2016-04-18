@@ -3,18 +3,20 @@ layout: post
 title:  "Amazon Beanstalk and Rails"
 date:   2016-04-11 21:00:00
 categories: Rails
-banner_image: ""
-featured: false
+banner_image: "/media/amazon_web_services.png"
+featured: true
 comments: true
 ---
 
-I've recently had to setup a Ruby on Rails application to run on Amazon Beanstalk. The application was to use a PostgreSQL but also needed support for PostGIS which is a spatial database extender for a PostgreSQL object-relational database. It adds support for geographic objects allowing location queries to be run in SQL. It has taken me quite a while to get the application up and running so I thought it would be a good idea to document the whole process here to hopefully help others (and myself when I setup another application on Beanstalk!).
+I've recently had to setup an existing Ruby on Rails application to run on Amazon Beanstalk. The application uses a PostgreSQL database but also needed support for PostGIS which is a spatial database extender for a PostgreSQL object-relational database. It adds support for geographic objects allowing location queries to be run in SQL. It has taken me quite a while to get the application up and running so I thought it would be a good idea to document the whole process here to hopefully help others (and myself when I setup another application on Beanstalk!).
 
 I'm pretty much a total newbie to setting up servers so I'd really appreciate tips on how to automate the steps below to speed up the process.
 
 <!--more-->
 
 ## Initial Steps
+
+As mentioned above, I already had a Rails app up and running but you can also follow along with a lot of the steps if you scaffold a very basic Rails app using sqlite. In fact a lot of the resources I found online were for setting up a basic app but I wrote this article to go into more depth for some of the complicated issues you might find.
 
 Obviously the first thing to do is to sign up for an AWS account and you also need to download the Elastic Beanstalk Command Line Tools via Homebrew:
 
@@ -23,9 +25,9 @@ brew update
 brew install aws-elasticbeanstalk
 ```
 
-From the terminal, type ```eb init``` to set things started and you will be presented with a series of options.  Choose the most suitable location for your app, then type your application name. The I choose Ruby as my language and Ruby 2.2 (Passenger Standalone) for my platform. Finally select yes for SSH setup and create a new keypair by following the instructions and setting a passphrase.
+From the terminal, type ```eb init``` to get things started and you will be presented with a series of options.  Choose the most suitable location for your app, then type your application name. I choose Ruby as my language and Ruby 2.2 (Passenger Standalone) for my platform. Finally select yes for SSH setup and create a new keypair by following the instructions and setting a passphrase.
 
-If this is your first time using Beanstalk you will be asked to enter your Access Key ID and Secret Access Key.  Follow [this guide](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html) to see how to do this. Note that you can find these details from the root of the terminal by going to ```cd .aws``` and looking in the ```config``` file.  Your default profile is ```eb-cli``` but you can add others if you work with with other Beanstalk setups that are owned by other people and they have provided you with the keys you need.
+If this is your first time using Beanstalk you will be asked to enter your Access Key ID and Secret Access Key.  Follow [this guide](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html) to see how to do this. Note that you can find these details from the root of the terminal by going to ```cd .aws``` and looking in the ```config``` file.  Your default profile is ```eb-cli``` but you can add others if you work with with other Beanstalk setups on various accounts and you have the necessary keys.
 
 You will notice that you now have a new ```.elasticbeanstalk``` directory that has been automatically added to your ```.gitignore```.
 
@@ -46,13 +48,13 @@ packages:
     postgresql94-devel: []
 ```
 
-It's a good time to now commit your changes to your git repo.  With that done it's time to setup your environment. You can setup as many environements as you need, most likely a staging and production environment.  For this example I'll just setup the one environment.  Type ```eb create my-env-name``` from the terminal, replacing 'my-env-name' with anything you like.
+It's a good time to now commit your changes to your git repo.  With that done it's time to setup your environment. You can setup as many environements as you need, most likely a staging and production environment.  Just change the ```RAILS_ENV``` and ```RACK_ENV``` values to suit.  For this example I'll just setup the one environment.  Type ```eb create app-production``` from the terminal, replacing 'app-production' with anything you like.
 
-You can now visit your application at the address given by Elastic Beanstalk but if it's an existing application there's a good chance you'll be presented with a 403 screen which needs further setup in Beanstalk.
+You can now visit your application at the address given by Elastic Beanstalk but if it's an existing application with PostgreSQL there's a good chance you'll be presented with a 403 screen which needs further setup in Beanstalk.
 
 ## Extra Setup Steps
 
-The first thing I have to do is setup more environment variables that are used in my application. From your application dashboard choose ```Configuration```  and then ```Software Configuration```.
+The first thing I have to do is setup more environment variables that are used in my application. From your Beanstalk application dashboard choose 'Configuration'  and then 'Software Configuration'.
 
 First up is to set ```RAILS_ENV: production``` and make sure to click the plus symbol and not the Apply button in order to add more variables otherwise it'll take you a long time to add all the variables!  Then you will need to set ```SECRET_KEY_BASE``` and ```SECRET_TOKEN```.  To get values for these you will need to type ```rake secret``` from the terminal for each one and then copy across the values. Also add any other environment variables you need in your application such as Facebook keys, etc. In my case these variables will be referenced from my secrets.yml file in my Rails applications.  Here is an example of my setup for production:
 
@@ -119,9 +121,9 @@ psql --host=a**********0a3.cne3quychuit.eu-west-1.rds.amazonaws.com --port=5432 
 
 I've hidden some details above for security.  You can get the host from the RDS Endpoint by going to Configuration from the Dashboard. The username is the one you set when creating the database and then you will be asked for your password that you setup.
 
-If your operation times out you probably need to add some extra setting to be able to log in.  In order to fix it you'll need to work from the EC2 Dashboard.  In order to reach it, go to Congiguration and then RDS. From there click 'View in RDS console' under Connectivity Information. On the next screen click the 'Instance Actions' drop down and select 'See Details. Then click on the first link in 'Security Groups'. I got a warning that 'Your account does not support the EC2-Classic Platform in this region' so I clicked the 'Go to EC2 console' link.
+If your operation times out you probably need to add some extra setting to be able to log in.  In order to fix it you'll need to work from the EC2 Dashboard by going to Congiguration and then RDS. From there click 'View in RDS console' under Connectivity Information. On the next screen click the 'Instance Actions' drop down and select 'See Details. Then click on the first link in 'Security Groups'. I got a warning that 'Your account does not support the EC2-Classic Platform in this region' so I clicked the 'Go to EC2 console' link.
 
-Click on the rds group name, then click on the 'Inbound' tab below , click 'Edit' and 'Add Rule'. Copy the setting for the exisiting PostgreSQL except for the source. I chose anywhere so I can log in from any location but you may want to only allow certain IP addresses.
+Click on the RDS group name, then click on the 'Inbound' tab below , click 'Edit' and 'Add Rule'. Copy the setting for the exisiting PostgreSQL except for the source. I chose my source as anywhere so I can log in from any location but you may want to only allow certain IP addresses.
 
 If you try logging into your database again from the terminal you should be successful. Now, to add the Postgis extensions type:
 
@@ -198,7 +200,7 @@ Told you it would take a while! All being well the script ran without any glitch
 
 One other thing I needed to setup for this application was to configure https. [This documentation](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https.html) talks you through how to set it up and in this example I'll simply use a self signed certificate. Do not use this production though, it's just for simplicity in this example!
 
-Follow the steps to create private key, CSR and certificate, but I found I could follow the rest of the steps to upload the certificate because the command line interface had changed from what the docs were describing so I had to hunt around for another way to do it.
+Follow the steps to create private key, CSR and certificate, but I found I couldn't follow the rest of the steps to upload the certificate because the command line interface had changed from what the docs were describing so I had to hunt around for another way to do it.
 
 Once again I had to go back to the EC2 Dashboard and on the list of options on the left hand side you'll see and option for 'Load Balancers' which you need to click.
 
