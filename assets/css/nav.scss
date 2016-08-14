@@ -98,17 +98,17 @@ nav{
 
 	.smallnav{
 		display:none;
-    
+
 		@media screen and (max-width: 906px) {
 			display:block;
       font:100 18px 'Open Sans', Serif;
 		}
-    
+
     @media screen and (max-width: 667px) {
 			display:block;
       font:100 16px 'Open Sans', Serif;
 		}
-    
+
     @media screen and (max-width: 480px) {
 			display:block;
       font:100 12px 'Open Sans', Serif;

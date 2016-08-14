@@ -3,28 +3,36 @@ layout: default
 ---
 
 <div class="profile">
-	{% if site.logourl != "" %}<img src="{{ site.logourl }}" class="profileimage" alt="user">{% endif %}
-	<h4>{{ site.title }}</h4>
-	<p>{{ site.description }}</p>
-    <ul>
-      {% if site.linkedin_url != '' %}
-      <li><a href="{{ site.linkedin_url }}" class="smallsocialbutton linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-      {% endif %}
-      {% if site.twitter_url != '' %}
-      <li><a href="{{ site.twitter_url }}" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-      {% endif %}
-      {% if site.facebook_url != '' %}
-      <li><a href="{{ site.facebook_url }}" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
-      {% endif %}
-      {% if site.github_url != '' %}
-      <li><a href="{{ site.github_url }}" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
-      {% endif %}
-      {% if site.instagram_url != '' %}
-      <li><a href="{{ site.instagram_url }}" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>
-      {% endif %}
-      <li><a href="{{ site.url }}/feed.xml" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>
-    </ul>
-	<hr>
+  {% if site.author_image != "" %}<img src="{{ site.author_image }}" class="profileimage" alt="user">{% endif %}
+  <h4>{{ site.author_name }}</h4>
+  <ul>
+    {% if site.linkedin_url != '' %}
+    <li><a href="{{ site.linkedin_url }}" class="smallsocialbutton linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+    {% endif %}
+    {% if site.twitter_url != '' %}
+    <li><a href="{{ site.twitter_url }}" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+    {% endif %}
+    {% if site.facebook_url != '' %}
+    <li><a href="{{ site.facebook_url }}" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
+    {% endif %}
+    {% if site.github_url != '' %}
+    <li><a href="{{ site.github_url }}" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
+    {% endif %}
+    {% if site.instagram_url != '' %}
+    <li><a href="{{ site.instagram_url }}" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>
+    {% endif %}
+    <li><a href="{{ site.url }}/feed.xml" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+  </ul>
+  <p>{{ site.author_bio }}</p>
+  <hr>
+  <ul>
+  {% if site.phone != '' %}
+    <li><a class="smallcontactbutton contact"><i class="fa fa-phone"></i></a><span class="contact-details">07775682459</span></li>
+  {% endif %}
+  {% if site.email != '' %}
+    <li><a class="smallcontactbutton contact"><i class="fa fa-envelope-o"></i></a><span class="contact-details">knoxjeffrey@outlook.com</span></li>
+  {% endif %}
+  </ul>
 </div>
 
 <section class="posts postindex wrapper">
@@ -35,7 +43,7 @@ layout: default
 				<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
 				<h2>
 					{% for category in post.categories %}
-					{{ category }} 
+					{{ category }}
 					{% endfor %}
 				</h2>
 				<h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
@@ -47,7 +55,7 @@ layout: default
 						{{ post.content | split:'<!--more-->' | first }}
                         <a href="{{ post.url | prepend: site.baseurl }}" class="readmore smallbutton blue" style="margin-top:20px;">Read More</a>
 					{% else %}
-						{{ post.content }}   
+						{{ post.content }}
 					{% endif %}
 				</div>
 			</header>
