@@ -89,7 +89,7 @@ The most important aspect of the above code is the ```rubber_secret``` entry. I 
 With the rubber standard config you have to select a Ubuntu Server 14.04 and I initially I chose the following for my staging server:
 
 ```
-rubyimage_type: m3.medium
+image_type: m3.medium
 image_id: ami-2d39803a
 ```
 
