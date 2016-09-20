@@ -1,14 +1,14 @@
 ---
 layout: post
 title:  "Rails, AWS EC2 and Rubber Deployment"
-date:   2016-09-10 22:23:00
+date:   2016-09-19 23:23:00
 categories: Rails
 banner_image: ""
 featured: false
 comments: true
 ---
 
-I'm back onto server setup on AWS and this time I have to setup a Rails application running on an EC2 instance.  After a bit of searching I came across [rubber](https://github.com/rubber/rubber) to help automate the process and followed along with a [Railscast](http://railscasts.com/episodes/347-rubber-and-amazon-ec2) to understand the process better.  It looked straightforward but when I got into it there where a few issues and a bit of work needed to use in production.
+I'm back onto server setup on AWS and this time I have to setup a Rails application running on an EC2 instance.  After a bit of searching I came across [rubber](https://github.com/rubber/rubber) to help automate the process and followed along with a [Railscast](http://railscasts.com/episodes/347-rubber-and-amazon-ec2) to understand the process better.  It looked straightforward but when I got into it there where a few issues and a bit of work needed to use it in production.
 
 <!--more-->
 
@@ -59,7 +59,7 @@ app_name: my_easy_deploy
 app_user: app
 admin_email: jeff@primate.co.uk
 timezone: UTC
-domain: my_easy_deploy.com
+domain: my-easy-deploy.com
 
 rubber_secret: "#{File.expand_path('~') + '/.ec2' + (Rubber.env == 'production' ? '' : '/staging') + '/my-easy-deploy-rubber-secret.yml' rescue ''}"
 
@@ -84,7 +84,7 @@ prompt_for_security_group_sync: false
 staging_roles: "web,app,db:primary=true"
 ```
 
-The most important aspect of the above code is the ```rubber_secret``` entry. I have a path in ./ec2 which will hold info for both the production and staging sites(```my-easy-deploy-rubber-secret.yml``` and ```staging/my-easy-deploy-rubber-secret.yml```). The data in these files actually takes precedence over the ```rubber.yml``` file which makes it perfect for holding sensitive data like keys, etc. The info in the ./ec2 directory does not get committed to the likes of github which means your sensitive data is safe. It's also great if you want to enter different setting for your production and staging servers. Everywhere I have XXXX above will be overwritten by the data in the ./ec2 directory. Notes also that I limited the staging rules to help save on memory which is quite handy for micro instances.
+The most important aspect of the above code is the ```rubber_secret``` entry. I have a path in ./ec2 which will hold info for both the production and staging sites(```my-easy-deploy-rubber-secret.yml``` and ```staging/my-easy-deploy-rubber-secret.yml```). The data in these files actually takes precedence over the ```rubber.yml``` file which makes it perfect for holding sensitive data like keys, etc. The info in the ./ec2 directory does not get committed to the likes of github which means your sensitive data is safe. It's also great if you want to enter different setting for your production and staging servers. Everywhere I have XXXX above will be overwritten by the data in the ```my-easy-deploy-rubber-secret.yml``` files. Notes also that I limited the staging roles to help save on memory which is quite handy for micro instances.
 
 With the rubber standard config you have to select a Ubuntu Server 14.04 and I initially I chose the following for my staging server:
 
@@ -93,7 +93,7 @@ rubyimage_type: m3.medium
 image_id: ami-2d39803a
 ```
 
-It turns out you need a [VPC setup](https://console.aws.amazon.com/vpc/home) on AWS to use the free/cheap t2 instances as [described here](http://www.clovescarneirojr.com/2016/02/10/deploy-rails-app-to-aws-vpc-ec2-rds-elb.html). Hhere's the settings I have used on my staging server:
+It turns out you need a [VPC setup](https://console.aws.amazon.com/vpc/home) on AWS to use the free/cheap t2 instances as [described here](http://www.clovescarneirojr.com/2016/02/10/deploy-rails-app-to-aws-vpc-ec2-rds-elb.html). Here's the settings I have used on my staging server:
 
 ```ruby
 vpc_alias: "#{app_name}_#{Rubber.env == 'production' ? 'production' : 'staging'}"
@@ -105,7 +105,7 @@ image_type: t2.micro
 image_id: ami-2d39803a
 ```
 
-Once again I put this under my ./ec2 files in order to use different settings for production and staging.
+Once again I put this under my ```my-easy-deploy-rubber-secret.yml``` files in order to use different settings for production and staging.
 
 ## Github deployment
 
