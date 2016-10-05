@@ -280,3 +280,17 @@ where ```my_easy_deploy``` is the username and ```my_easy_deploy_staging``` is t
 ## More to do
 
 I'm still working with EC2 deploys and I'll add more info to this article if I come across anything that might be helpful. Hopefully though this will give you some help to get you started!
+
+## Edit 5th Oct 2016
+
+I mentioned above in the section about swapping out databases that you ssh into your application to run the rake task. If you would like to run any rake task from the terminal then you can add the following to your deploy.rb file:
+
+```ruby
+namespace :run_rake do
+  desc "Run a task on a remote server."
+  task :invoke do
+    run("cd #{deploy_to}/current && bundle exec rake #{ENV['task']} RAILS_ENV=#{rails_env}")
+  end
+end
+```
+Then run ```cap run_rake:invoke task="db:reset"``` for example.
