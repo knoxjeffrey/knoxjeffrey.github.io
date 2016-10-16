@@ -294,3 +294,54 @@ namespace :run_rake do
 end
 ```
 Then run ```cap run_rake:invoke task="db:reset"``` for example.
+
+## Edit 16th Oct 2016
+
+I'm adding a little more info here about uploading images as this took a while for me to complete. I used Carrierwave and Image Magick to upload my images to an S3 bucket. I won't go into that setup too much as it's well documented elsewhere. Howver, one additional thing I wan't to do was to to further reduce my png files and for that I used [pngquant](https://pngquant.org/). This can be installed locally with ```brew install pngquant``` and on your Ubuntu server with:
+
+```
+sudo apt-get update
+sudo apt-get install pngquant
+```
+
+Additionally you will need the following packages on your server:
+
+```
+sudo apt-get install libjpeg62
+sudo apt-get install libpng-dev
+sudo apt-get install imagemagick
+```
+
+A further 2 gems were needed for image optimisation:
+
+```
+gem 'piet'
+gem 'piet-binary'
+```
+
+With those gems in place and pngquant all I needed to add to my uploader file was the following:
+
+```
+process :resize_to_limit => [600, 600]
+process :pngquant
+```
+
+One other problem you'll come across when trying to upload to S3 on your server is that the image processing requires an uploads folder to be created so I added the following to the```deploy.rb``` file:
+
+```
+# uploads directory
+after "deploy:update_code", "create_uploads_dir"
+task :create_uploads_dir, :roles => [:app] do
+  run "cd #{shared_path} && mkdir -p uploads && cd #{release_path} && ln -s #{shared_path}/uploads #{release_path}/public/uploads"
+end
+```
+
+Finally, I was having trouble uploading large files on my server as was getting an error from nginx.  I solved this by add the following to the html section of the ```nginx.conf``` file in the rubber directory:
+
+```
+client_max_body_size 3M;
+```
+
+and obviously change the value to whatever suits you.
+
+The 2 amazing parts of pngquant were that the image process took almost zero extra time but reduced my file sizes from around 400kb down to 100kb with no noticable loss in quality!
