@@ -107,7 +107,7 @@ production:
 
 Note that if you decide to change your database password for example you need to go into your environment variables in AWS and add a ```RDS_PASSWORD``` variable with the password you want.  You can change the password by going to Configuration from the dashboard.
 
-When all the settings have been applied, go back to the terminal and type ```eb deploy```.  Note, you can add your environment name after the ```eb deploy``` if you have a few environements setup. 
+When all the settings have been applied, go back to the terminal and type ```eb deploy```.  Note, you can add your environment name after the ```eb deploy``` if you have a few environements setup.
 
 ## Postgis
 
@@ -215,3 +215,38 @@ The final step I had to make was to go back to the EC2 Dashbaord and from there 
 If you ```eb deploy``` now you should run through without errors.  You'll no doubt get an error about the certificate not being trusted when you visit your site but that's just because it's self signed and you can skip the warning. Just make sure to use a proper certificate in production.
 
 I'm sure there's a much better way to add options in ```.ebextensions``` that would automate a lot of these steps and I'd really appreciate any feedback on how to do it because as things stand it's quite a cumbersome process that will be quite prone to error.
+
+## Extra Notes
+
+As a quick extra, if you ever need to pull a copy of your database from the server you can run the following from your instance:
+
+```
+pg_dump --host <enter your ec2 host> -p 5432 --username myusername --dbname mydbname > name_your_downloaded_db_file
+```
+
+and to get it onto your local host:
+
+```
+scp <enter your ec2 host>:/var/app/current/name_your_downloaded_db_file.sql
+```
+
+To go the other way and load a local db you can do the following:
+
+```
+sudo /etc/init.d/passenger stop
+sudo su
+RAILS_ENV=production bundle exec rake db:drop
+RAILS_ENV=production bundle exec rake db:create
+RAILS_ENV=production bundle exec rake db:migrate
+```
+and then from the terminal :
+
+```
+psql --host=<enter your ec2 host> --port=5432 --username=myusername --password ebdb < ~/Desktop/your_database.sql
+```
+
+and restart passenger from your instance:
+
+```
+sudo /etc/init.d/passenger start
+```
