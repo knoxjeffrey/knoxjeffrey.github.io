@@ -3,7 +3,7 @@
 
 	display:inline-block;
 	padding: 7px 22px;
-	font:600 14px 'Open Sans', Serif;
+	font:600 14px 'Montserrat', Serif;
 	@include transition(all 0.2s ease-in-out);
 	@include border-radius(4px, 4px);
 
@@ -63,7 +63,7 @@
 	}
 
 	@include transition(all 0.2s ease-in-out);
-    
+
     &.linkedin:hover{
 		background:#0e76a8;
 		color:#fff;
@@ -109,12 +109,12 @@
 	@include border-radius(36px, 36px);
 
 	i{
-		vertical-align: -1px;
+		vertical-align: -3px;
 		position:relative;
 	}
 
 	@include transition(all 0.2s ease-in-out);
-    
+
     &.contact:hover{
 		color:#fff;
 	}
@@ -223,10 +223,11 @@
 			box-shadow: inset 0 0 0px 2px #0e76a8;
 		}
 	}
-  
-    .contact{
+
+  .contact{
 		-webkit-box-shadow: inset 0 0 0px 20px #FF7777;
 		box-shadow: inset 0 0 0px 20px #FF7777;
+		cursor: pointer;
 		&:hover{
 			color:#FF7777;
 			-webkit-box-shadow: inset 0 0 0px 2px #FF7777;

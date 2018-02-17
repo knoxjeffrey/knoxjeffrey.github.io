@@ -1,6 +1,6 @@
 
 .profile{
-	
+
 	position:fixed;
 	width:15%;
 	right:5%;
@@ -32,6 +32,9 @@
 		ul li a{
 			color:#797979;
 			background:#000;
+		}
+		ul li .contact-details {
+			color:#fff;
 		}
 		&.stuck{
 			position:fixed;
@@ -76,14 +79,14 @@
 
 	strong{
 		margin:20px 0 10px;
-		font:600 14px 'Open Sans', Serif;
+		font:600 14px 'Montserrat', Serif;
 		color:#3a3a3a;
 	}
 
 	p{
 		margin:20px 0;
 		clear:both;
-		font:400 15px 'Open Sans', Serif;
+		font:400 15px 'Montserrat', Serif;
 		line-height:28px;
 		max-height: 136px;
 		text-overflow: ellipsis;
@@ -102,7 +105,7 @@
 	}
 
 	.tweet{
-		font:600 12px 'Open Sans', Serif;
+		font:600 12px 'Montserrat', Serif;
 		line-height:24px;
 		margin:20px 0;
 		span{
@@ -153,7 +156,7 @@
 
 	p{
 		margin:15px 0;
-		font:400 14px 'Open Sans', Serif;
+		font:400 14px 'Montserrat', Serif;
 		line-height:32px;
 	}
 
@@ -167,6 +170,10 @@
 		-moz-transition: all 0.25s ease-out;
 		-o-transition: all 0.25s ease-out;
 		transition: all 0.25s ease-out;
+
+		a{
+			border-bottom: none;
+		}
 	}
 
 	ul{
@@ -179,7 +186,7 @@
 		padding:0;
 		a{
 			display:inline-block;
-			padding:9px 0;
+			padding:10px 0;
 			width:40px;
 			text-align:center;
 			-webkit-border-radius: 41px;

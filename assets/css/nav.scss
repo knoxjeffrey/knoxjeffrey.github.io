@@ -4,7 +4,7 @@ nav{
 	z-index:400;
 	top:20px;
 	right:20px;
-	font:600 14px 'Open Sans', Serif;
+	font:600 14px 'Montserrat', Serif;
 	clear:both;
 	@include transition(all 0.2s ease-out);
 
@@ -85,7 +85,7 @@ nav{
   width: 100%;
 	padding:25px 0;
 	text-align:center;
-	font:100 24px 'Open Sans', Serif;
+	font:100 24px 'Montserrat', Serif;
 	color:#a6a6a6;
 
 	span{
@@ -101,17 +101,17 @@ nav{
 
 		@media screen and (max-width: 906px) {
 			display:block;
-      font:100 18px 'Open Sans', Serif;
+      font:100 18px 'Montserrat', Serif;
 		}
 
     @media screen and (max-width: 667px) {
 			display:block;
-      font:100 16px 'Open Sans', Serif;
+      font:100 16px 'Montserrat', Serif;
 		}
 
     @media screen and (max-width: 480px) {
 			display:block;
-      font:100 12px 'Open Sans', Serif;
+      font:100 12px 'Montserrat', Serif;
 		}
 	}
 
