@@ -14,13 +14,13 @@ config1.waveColor = red_wave_color;
 config1.circleThickness = circle_thickness;
 config1.textVertPosition = 0.9;
 config1.waveAnimateTime = wave_animate_time;
-loadLiquidFillGauge("fillgauge1", 85, config1);
+loadLiquidFillGauge("fillgauge1", 95, config1);
 
 var config2 = liquidFillGaugeDefaultSettings();
 config2.circleThickness = circle_thickness;
 config2.textVertPosition = 0.85;
 config2.waveAnimateTime = wave_animate_time;
-loadLiquidFillGauge("fillgauge2", 80, config2);
+loadLiquidFillGauge("fillgauge2", 90, config2);
 
 var config3 = liquidFillGaugeDefaultSettings();
 config3.circleThickness = circle_thickness;
@@ -32,7 +32,7 @@ var config4 = liquidFillGaugeDefaultSettings();
 config4.circleThickness = circle_thickness;
 config4.textVertPosition = 0.75;
 config4.waveAnimateTime = wave_animate_time;
-loadLiquidFillGauge("fillgauge4", 70, config4);
+loadLiquidFillGauge("fillgauge4", 75, config4);
 
 var config5 = liquidFillGaugeDefaultSettings();
 config5.circleThickness = circle_thickness;
