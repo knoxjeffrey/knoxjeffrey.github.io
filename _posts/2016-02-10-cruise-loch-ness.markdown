@@ -23,3 +23,5 @@ Ruby on Rails, Locomotive CMS, PostgreSQL, mongoDB, jQuery, SCSS
 ## My involvement
 
 My main responsibility was to build the admin system (using Active Admin) and to build the booking engine to allow users to book and pay (with Stripe) for trips through the website. Happily, the release of the new site resulted in a tripling of online sales.
+
+For more, see the case study at [Primate](https://www.primate.co.uk/clients/cln).
