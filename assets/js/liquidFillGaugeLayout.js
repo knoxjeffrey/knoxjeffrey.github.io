@@ -36,6 +36,6 @@ loadLiquidFillGauge("fillgauge4", 75, config4);
 
 var config5 = liquidFillGaugeDefaultSettings();
 config5.circleThickness = circle_thickness;
-config5.textVertPosition = 0.45;
+config5.textVertPosition = 0.55;
 config5.waveAnimateTime = wave_animate_time;
-loadLiquidFillGauge("fillgauge5", 45, config5);
+loadLiquidFillGauge("fillgauge5", 55, config5);
