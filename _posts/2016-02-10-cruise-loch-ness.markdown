@@ -22,6 +22,8 @@ Ruby on Rails, Locomotive CMS, PostgreSQL, mongoDB, jQuery, SCSS
 
 ## My involvement
 
-My main responsibility was to build the admin system (using Active Admin) and to build the booking engine to allow users to book and pay (with Stripe) for trips through the website. Happily, the release of the new site resulted in a tripling of online sales.
+Cruise Loch Ness will always be a special project as it was the first one I worked on with Primate and I was tasked with building a booking engine that would integrate with Stripe to allow users to pay for trips through the website. Additionally, CLN wanted an admin system that would allow them to easily manage their daily sailings and payments which I was able to achieve using Active Admin.
+
+The site has been a huge success, resulting in a tripling of online sales in the first year in addition to year on year increases.
 
 For more, see the case study at [Primate](https://www.primate.co.uk/clients/cln).
