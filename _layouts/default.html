@@ -19,6 +19,8 @@
       <link rel="stylesheet" href="{{ "/assets/css/init.css" | prepend: site.baseurl }}">
       <link href='//fonts.googleapis.com/css?family=Montserrat:400,600,700' rel='stylesheet' type='text/css'>
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+      {% include tracking.html %}
   </head>
   <body>
 
@@ -33,8 +35,6 @@
       var config = {
         'disqus_shortname': '{{ site.theme_disqus_shortname }}',
         'google_comments': {{ site.theme_google_comments }},
-        'analytics_id': '{{ site.theme_analytics_id }}',
-        'analytics_domain': '{{ site.theme_analytics_domain }}',
         'readingtime': {{ site.theme_reading_time }},
         'autoload_comments': {{ site.theme_autoload_comments }}
       };

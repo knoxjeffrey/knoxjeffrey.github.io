@@ -6,7 +6,7 @@ email: 						"knoxjeffrey@outlook.com"
 phone:                      "+447775682459"
 description: 				"Web development projects, thoughts, knowledge and ideas"
 baseurl: 					""
-url: 						"http://knoxjeffrey.github.io"
+url: 						"https://knoxjeffrey.github.io"
 logourl: 					"/assets/img/bloglogo.jpg"
 fa-logo: 					"fa-bookmark-o"
 paginate: 					5
@@ -35,7 +35,6 @@ linkedin_url:  				"https://www.linkedin.com/profile/public-profile-settings?trk
 theme_disqus_shortname: 	"knoxjeffrey"
 theme_google_comments: 		false
 theme_analytics_id: 		"UA-58139054-1"
-theme_analytics_domain: 	"auto"
 theme_reading_time: 		true
 theme_autoload_comments: 	false
 theme_always_show_nav: 		false

@@ -75,9 +75,9 @@
 })( window.jQuery || window.Zepto );
 
 ;(function ($, window, document, undefined) {
-  
+
   var pluginName = "readingTime";
-  
+
   var defaults = {
     bubble: '#scrollbubble'
   };
@@ -709,13 +709,13 @@ jQuery(document).ready(function(){
 		var list = [];
 		$('.postbody h2').waypoint(function(direction) {
 			var e = $(this);
-			if(direction === "down"){ 
+			if(direction === "down"){
 				$('.index h2').fadeOut(function() {
 					list.push($('.index h2').text());
 	  				$(this).text($(e).text()).fadeIn();
 				});
 			};
-			if(direction === "up"){ 
+			if(direction === "up"){
 				$('.index h2').fadeOut(function() {
 	  				$(this).text(list.pop()).fadeIn();
 				});
@@ -727,7 +727,7 @@ jQuery(document).ready(function(){
 	// FITVIDS
 	jQuery(".postbody").fitVids();
   jQuery(".excerpt").fitVids();
-	
+
 
 	// COMMENTS
 	if(config.disqus_shortname != '' && config.disqus_shortname != null && config.disqus_shortname != undefined || config.google_comments == true){
@@ -748,7 +748,7 @@ jQuery(document).ready(function(){
 			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 			})();
 		}else if(config.google_comments == true){
-			
+
 			$.getScript("https://apis.google.com/js/plusone.js")
 			.done(function(script, textStatus ) {
 				gapi.comments.render('g-comments', {
@@ -768,18 +768,6 @@ jQuery(document).ready(function(){
 		$(this).fadeOut(400);
 	});
 
-
-	// ANALYTICS
-	if(config.analytics_id != '' || config.analytics_id != null || config.analytics_id != undefined){
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		ga('create', config.analytics_id, config.analytics_domain);
-		ga('send', 'pageview');
-        setTimeout("ga('send', 'event', 'read', '10 seconds')",10000);
-	}
-  
 	// READING TIME
 	if(config.readingtime == true){
 		$(".postbody").readingTime();
@@ -789,7 +777,7 @@ jQuery(document).ready(function(){
   // FEATURE SCROLL
   $(".movedown").click(function(){
     $("html, body").animate({scrollTop: $('.cover').height()}, 1000);
-  }); 
-    
+  });
+
 
 });
