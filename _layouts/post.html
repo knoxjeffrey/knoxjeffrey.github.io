@@ -87,6 +87,55 @@ layout: default
             </ul>
         </footer>
 
+        <div class="relatedPosts">
+
+          <h4>You May Also Enjoy</h4>
+
+          {% assign maxRelated = 3 %}
+          {% assign minCommonTags =  1 %}
+          {% assign maxRelatedCounter = 0 %}
+
+          <ul class="related_content">
+            {% for post in site.posts %}
+
+              {% assign sameTagCount = 0 %}
+              {% assign commonTags = '' %}
+
+              {% for category in post.categories %}
+                {% if post.url != page.url %}
+                  {% if page.categories contains category %}
+                    {% assign sameTagCount = sameTagCount | plus: 1 %}
+                    {% capture tagmarkup %} <span class="label label-default">{{ category }}</span> {% endcapture %}
+                    {% assign commonTags = commonTags | append: tagmarkup %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+
+              {% if sameTagCount >= minCommonTags %}
+                <li>
+                  <div class="related_content_detail">
+                    <h4><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h4>
+                    <span>
+                      <h5><i class="fa fa-clock-o"></i><time datetime="{{ post.date | date: "%Y-%m-%d" }}"> {{ post.date | date: "%B %-d, %Y" }}</time>.</h5>
+                    </span>
+                    <div class="excerpt">
+                      {{ post.content | strip_html | truncate: 150 }}
+                    </div>
+                    <a href="{{ post.url | prepend: site.baseurl }}" class="readmore smallbutton blue" style="margin-top:20px;">Read More</a>
+                  </div>
+                </li>
+
+                {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
+                {% if maxRelatedCounter >= maxRelated %}
+                  {% break %}
+                {% endif %}
+              {% endif %}
+
+            {% endfor %}
+          </ul>
+
+        </div>
+
         <div class="postprofile">
             <img src="{{ site.author_image }}" class="author" alt="user">
             <div class="info">
